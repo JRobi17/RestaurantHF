@@ -23,7 +23,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User registerNewUser(User user) {
-        Role role = roleDao.findById("Employee").get();
+        Role role = roleDao.findById("User").get();
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(role);
         user.setRole(userRoles);
@@ -33,12 +33,12 @@ public class UserService {
 
     public void initRoleAndUser() {
         Role adminRole = new Role();
-        adminRole.setRoleName("Manager");
+        adminRole.setRoleName("Admin");
         adminRole.setRoleDescription("A manager of the restaurant.");
         roleDao.save(adminRole);
 
         Role userRole = new Role();
-        userRole.setRoleName("Employee");
+        userRole.setRoleName("User");
         userRole.setRoleDescription("Default role for newly created record");
         roleDao.save(userRole);
 

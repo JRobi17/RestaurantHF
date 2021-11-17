@@ -28,13 +28,13 @@ public class UserController {
     }
 
     @GetMapping({"/forAdmin"})
-    @PreAuthorize("hasRole('Manager')")
+    @PreAuthorize("hasRole('Admin')")
     public String forAdmin(){
         return "This URL is only accessible to the admin";
     }
 
     @GetMapping({"/forUser"})
-    @PreAuthorize("hasRole('Employee')")
+    @PreAuthorize("hasRole('User')")
     public String forUser(){
         return "This URL is only accessible to the user";
     }
