@@ -10,10 +10,11 @@ import {UserAuthService} from "../services/user-auth.service";
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  private _isAuthSuccessful: boolean = true;
   constructor(
     private userService: UserService,
     private userAuthService: UserAuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {}
@@ -23,17 +24,17 @@ export class LoginComponent implements OnInit {
       (response: any) => {
         this.userAuthService.setRoles(response.user.role);
         this.userAuthService.setToken(response.jwtToken);
-
-        const role = response.user.role[0].roleName;
-        if (role === 'Admin') {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/user']);
-        }
+        this.router.navigate(['/']);
+        //const role = response.user.role[0].roleName;
       },
       (error: any) => {
+        this._isAuthSuccessful = false;
         console.log(error);
       }
     );
+  }
+
+  get isAuthSuccessful(): boolean {
+    return this._isAuthSuccessful;
   }
 }
