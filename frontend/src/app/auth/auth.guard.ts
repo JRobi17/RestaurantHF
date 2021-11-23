@@ -30,10 +30,8 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     if (this.userAuthService.getToken() !== null) {
       const role = route.data['roles'] as Array<string>;
-
       if (role) {
         const match = this.userService.roleMatch(role);
-
         if (match) {
           return true;
         } else {
@@ -42,7 +40,6 @@ export class AuthGuard implements CanActivate {
         }
       }
     }
-
     this.router.navigate(['/login']);
     return false;
   }
