@@ -16,6 +16,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { TableComponent } from './table/table.component';
 import { IncomeComponent } from './income/income.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { InplaceComponent } from './inplace/inplace.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { IncomeComponent } from './income/income.component';
     EmployeeComponent,
     ReservationComponent,
     TableComponent,
-    IncomeComponent
+    IncomeComponent,
+    DeliveryComponent,
+    InplaceComponent
   ],
   imports: [
     BrowserModule,
