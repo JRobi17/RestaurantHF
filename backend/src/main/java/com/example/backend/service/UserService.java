@@ -24,7 +24,11 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User registerNewUser(User user) {
-        Role role = roleDao.findById("User").get();
+        Set<Role> roles = user.getRole();
+        Role role = null;
+        for (Role r : roles) {
+            role = roleDao.findById(r.getRoleName()).get();
+        }
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(role);
         user.setRole(userRoles);
@@ -69,6 +73,8 @@ public class UserService {
     }
 
     public List<User> getAllUsers() { return userDao.findAll(); }
+
+    public List<Role> getAllRoles() { return roleDao.findAll(); }
 
     public boolean deleteUser(String userName) {
         List<User> users = getAllUsers();

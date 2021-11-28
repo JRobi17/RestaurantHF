@@ -25,7 +25,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   deleteUser(userName: string) {
-    this.userService.deleteUser(userName).subscribe(data => {
+    this.userService.deleteUser(userName).subscribe(() => {
       this.getUsers();
     })
   }

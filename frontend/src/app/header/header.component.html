@@ -33,8 +33,8 @@
         </li>
 
       </ul>
-      <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Login</button>
-      <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()" >Logout</button>
+      <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Bejelentkezés</button>
+      <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()" >Kijelentkezés</button>
     </div>
   </div>
 </nav>

@@ -9,6 +9,7 @@ import { IncomeComponent} from "./income/income.component";
 import { EmployeeComponent} from "./employee/employee.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {DeliveryComponent} from "./delivery/delivery.component";
+import {CreateNewEmployeeComponent} from "./create-new-employee/create-new-employee.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'delivery', component: DeliveryComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'User']}},
   { path: 'income', component: IncomeComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'User']}},
   { path: 'employee', component: EmployeeComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
-  { path: 'income', component: IncomeComponent, canActivate:[AuthGuard], data:{roles:['Admin']}}
+  { path: 'income', component: IncomeComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
+  { path: 'createnewemployee', component: CreateNewEmployeeComponent, canActivate:[AuthGuard], data:{roles:['Admin']}}
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {UserAuthService} from './user-auth.service';
 import {Observable} from "rxjs";
 import {User} from "../classes/user";
+import {Role} from "../classes/role";
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,14 @@ export class UserService {
 
   public deleteUser(userName: string) {
     return this.httpclient.delete(this.PATH_OF_API + "/" + userName, {responseType: 'text'})
+  }
+
+  public registerNewUser(user: User) {
+    return this.httpclient.post(this.PATH_OF_API + "/registerNewUser", user);
+  }
+
+  public getAllRoles(): Observable<Role[]> {
+    return this.httpclient.get<Role[]>(this.PATH_OF_API + '/getAllRoles')
   }
 
   public roleMatch(allowedRoles: string | any[]): boolean {

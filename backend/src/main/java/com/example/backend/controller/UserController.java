@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.model.Role;
 import com.example.backend.model.User;
 import com.example.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,9 @@ public class UserController {
 
     @GetMapping({"/getAllUsers"})
     public List<User> getAllUsers() { return userService.getAllUsers(); }
+
+    @GetMapping({"/getAllRoles"})
+    public List<Role> getAllRoles() { return userService.getAllRoles(); }
 
     @DeleteMapping("{userName}")
     public String deleteDriver(@PathVariable String userName){

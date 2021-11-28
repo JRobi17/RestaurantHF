@@ -1,4 +1,7 @@
 <div>
+  <br><br>
+  <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/createnewemployee"> Új alkalmazott hozzáadása</button>
+  <br><br>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -9,7 +12,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users; let i = index" [class.active]="i == currentIndex" >
+    <tr *ngFor="let user of users" >
       <td> {{ user.userName }}</td>
       <td> {{ user.userFirstName }} </td>
       <td> {{ user.userLastName }} </td>
