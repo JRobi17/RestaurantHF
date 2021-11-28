@@ -1,13 +1,14 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {UserAuthService} from './user-auth.service';
+import {Observable} from "rxjs";
+import {User} from "../classes/user";
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   PATH_OF_API = 'http://localhost:9090';
-
   requestHeader = new HttpHeaders({'No-Auth': 'True'});
 
   constructor(
@@ -27,6 +28,14 @@ export class UserService {
 
   public forAdmin() {
     return this.httpclient.get(this.PATH_OF_API + '/forAdmin', {responseType: 'text'});
+  }
+
+  public getAllUsers(): Observable<User[]> {
+    return this.httpclient.get<User[]>(this.PATH_OF_API + '/getAllUsers')
+  }
+
+  public deleteUser(userName: string) {
+    return this.httpclient.delete(this.PATH_OF_API + "/" + userName, {responseType: 'text'})
   }
 
   public roleMatch(allowedRoles: string | any[]): boolean {

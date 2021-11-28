@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -65,5 +66,17 @@ public class UserService {
 
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);
+    }
+
+    public List<User> getAllUsers() { return userDao.findAll(); }
+
+    public boolean deleteUser(String userName) {
+        List<User> users = getAllUsers();
+        for (User u : users)
+            if (u.getUserName().equals(userName)) {
+                userDao.delete(u);
+                return true;
+            }
+        return false;
     }
 }

@@ -1,1 +1,24 @@
-<p>employee works!</p>
+<div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> Felhasználónév </th>
+      <th> Keresztnév </th>
+      <th> Vezetéknév </th>
+      <th> Munkakör </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users; let i = index" [class.active]="i == currentIndex" >
+      <td> {{ user.userName }}</td>
+      <td> {{ user.userFirstName }} </td>
+      <td> {{ user.userLastName }} </td>
+      <td *ngFor="let role of user.role"> {{ role.roleName }} </td>
+      <td>
+        <button *ngIf="user.userName != 'admin123'" type="button" class="btn btn-outline-danger" (click)="deleteUser(user.userName)" style="margin-left: 10px">Delete</button>
+        <br><br>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

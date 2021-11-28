@@ -11,7 +11,6 @@ public class User {
     private String userFirstName;
     private String userLastName;
     private String userPassword;
-
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
             joinColumns = {
@@ -55,12 +54,8 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public Set<Role> getRole() {
-        return role;
-    }
+    public Set<Role> getRole() { return role; }
 
-    public void setRole(Set<Role> role) {
-        this.role = role;
-    }
+    public void setRole(Set<Role> role) { this.role = role; }
 }
 
