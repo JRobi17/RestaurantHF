@@ -7,8 +7,8 @@ import com.example.backend.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -22,48 +22,71 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User registerNewUser(User user) {
-        Role role = roleDao.findById("User").get();
-        Set<Role> userRoles = new HashSet<>();
-        userRoles.add(role);
-        user.setRole(userRoles);
+    public void registerNewUser(User user) {
+        Role role = roleDao.findById(user.getRole().getRoleName()).get();
+        user.setRole(role);
         user.setUserPassword(getEncodedPassword(user.getUserPassword()));
-        return userDao.save(user);
+        userDao.save(user);
     }
 
     public void initRoleAndUser() {
+
         Role adminRole = new Role();
         adminRole.setRoleName("Admin");
         adminRole.setRoleDescription("A manager of the restaurant.");
         roleDao.save(adminRole);
 
-        Role userRole = new Role();
-        userRole.setRoleName("User");
-        userRole.setRoleDescription("Default role for newly created record");
-        roleDao.save(userRole);
+        Role hostRole = new Role();
+        hostRole.setRoleName("Host");
+        hostRole.setRoleDescription("The person to take orders and invite guests in.");
+        roleDao.save(hostRole);
+
+        Role waiterRole = new Role();
+        waiterRole.setRoleName("Waiter");
+        waiterRole.setRoleDescription("Waiter or waitress.");
+        roleDao.save(waiterRole);
+
+        Role cookRole = new Role();
+        cookRole.setRoleName("Cook");
+        cookRole.setRoleDescription("A person who works in the kitchen.");
+        roleDao.save(cookRole);
 
         User adminUser = new User();
         adminUser.setUserName("admin123");
         adminUser.setUserPassword(getEncodedPassword("admin@pass"));
         adminUser.setUserFirstName("admin");
         adminUser.setUserLastName("admin");
-        Set<Role> adminRoles = new HashSet<>();
-        adminRoles.add(adminRole);
-        adminUser.setRole(adminRoles);
+        adminUser.setRole(adminRole);
         userDao.save(adminUser);
 
         User user = new User();
-        user.setUserName("employee123");
-        user.setUserPassword(getEncodedPassword("user@pass"));
-        user.setUserFirstName("emp");
-        user.setUserLastName("emp");
-        Set<Role> userRoles = new HashSet<>();
-        userRoles.add(userRole);
-        user.setRole(userRoles);
+        user.setUserName("host");
+        user.setUserPassword(getEncodedPassword("host@pass"));
+        user.setUserFirstName("Default");
+        user.setUserLastName("Host");
+        user.setRole(hostRole);
         userDao.save(user);
     }
 
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);
+    }
+
+    public List<User> getAllUsers() {
+        return userDao.findAll();
+    }
+
+    public List<Role> getAllRoles() {
+        return roleDao.findAll();
+    }
+
+    public void deleteUser(String userName) {
+        List<User> users = getAllUsers();
+        for (User u : users)
+            if (u.getUserName().equals(userName)) {
+                Role role = u.getRole();
+                userDao.delete(u);
+                roleDao.save(role);
+            }
     }
 }

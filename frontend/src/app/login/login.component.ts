@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
         this.userAuthService.setRoles(response.user.role);
         this.userAuthService.setToken(response.jwtToken);
         this.router.navigate(['/']);
-        //const role = response.user.role[0].roleName;
       },
       (error: any) => {
         this._isAuthSuccessful = false;

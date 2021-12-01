@@ -1,1 +1,27 @@
-<p>employee works!</p>
+<div>
+  <br><br>
+  <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/createnewemployee"> Új alkalmazott hozzáadása</button>
+  <br><br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> Felhasználónév </th>
+      <th> Keresztnév </th>
+      <th> Vezetéknév </th>
+      <th> Munkakör </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users" >
+      <td> {{ user.userName }}</td>
+      <td> {{ user.userFirstName }} </td>
+      <td> {{ user.userLastName }} </td>
+      <td> {{ user.role.roleName }} </td>
+      <td>
+        <button *ngIf="user.role.roleName != 'Admin'" type="button" class="btn btn-outline-danger" (click)="deleteUser(user.userName)" style="margin-left: 10px">Delete</button>
+        <br><br>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

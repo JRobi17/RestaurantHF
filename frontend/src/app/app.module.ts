@@ -18,6 +18,10 @@ import { TableComponent } from './table/table.component';
 import { IncomeComponent } from './income/income.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { InplaceComponent } from './inplace/inplace.component';
+import { CreateNewEmployeeComponent } from './create-new-employee/create-new-employee.component';
+import {MatInputModule} from "@angular/material/input";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -31,14 +35,19 @@ import { InplaceComponent } from './inplace/inplace.component';
     TableComponent,
     IncomeComponent,
     DeliveryComponent,
-    InplaceComponent
+    InplaceComponent,
+    CreateNewEmployeeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule
+    MatInputModule,
+    RouterModule,
+    MatSelectModule,
+    BrowserAnimationsModule
+
   ],
   providers: [
     AuthGuard,

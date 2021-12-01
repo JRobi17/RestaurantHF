@@ -1,8 +1,8 @@
 package com.example.backend.dao;
 
 import com.example.backend.model.Role;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleDao extends CrudRepository<Role, String> { }
+public interface RoleDao extends JpaRepository<Role, String> { }
