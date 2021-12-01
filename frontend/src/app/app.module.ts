@@ -46,7 +46,6 @@ import {MatSelectModule} from "@angular/material/select";
     MatInputModule,
     RouterModule,
     MatSelectModule,
-    //NoopAnimationsModule,
     BrowserAnimationsModule
 
   ],

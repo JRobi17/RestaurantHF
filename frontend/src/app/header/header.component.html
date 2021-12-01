@@ -8,27 +8,27 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/table"
-             *ngIf="userService.roleMatch(['Admin']) || userService.roleMatch(['User'])"
+             *ngIf="userService.roleMatch('Admin') || userService.roleMatch('Host')"
           >Asztalok nyilvántartása</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/reservation"
-             *ngIf="userService.roleMatch(['Admin']) || userService.roleMatch(['User'])"
+             *ngIf="userService.roleMatch('Admin') || userService.roleMatch('Host')"
           >Foglalások kezelése</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/order"
-             *ngIf="userService.roleMatch(['Admin']) || userService.roleMatch(['User'])"
+             *ngIf="userService.roleMatch('Admin') || userService.roleMatch('Host')"
           >Rendelések felvitele</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/employee"
-             *ngIf="userService.roleMatch(['Admin'])"
+             *ngIf="userService.roleMatch('Admin')"
           >Alkalmazottak megtekintése</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/income"
-             *ngIf="userService.roleMatch(['Admin'])"
+             *ngIf="userService.roleMatch('Admin')"
           >Havi bevétel</a>
         </li>
 

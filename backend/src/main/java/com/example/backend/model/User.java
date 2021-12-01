@@ -1,7 +1,6 @@
 package com.example.backend.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class User {
@@ -11,7 +10,7 @@ public class User {
     private String userFirstName;
     private String userLastName;
     private String userPassword;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
             joinColumns = {
                     @JoinColumn(name = "USER_ID")
@@ -20,7 +19,7 @@ public class User {
                     @JoinColumn(name = "ROLE_ID")
             }
     )
-    private Set<Role> role;
+    private Role role;
 
     public String getUserName() {
         return userName;
@@ -54,8 +53,12 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public Set<Role> getRole() { return role; }
+    public Role getRole() {
+        return role;
+    }
 
-    public void setRole(Set<Role> role) { this.role = role; }
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
 

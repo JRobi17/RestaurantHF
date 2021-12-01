@@ -16,9 +16,9 @@
       <td> {{ user.userName }}</td>
       <td> {{ user.userFirstName }} </td>
       <td> {{ user.userLastName }} </td>
-      <td *ngFor="let role of user.role"> {{ role.roleName }} </td>
+      <td> {{ user.role.roleName }} </td>
       <td>
-        <button *ngIf="user.userName != 'admin123'" type="button" class="btn btn-outline-danger" (click)="deleteUser(user.userName)" style="margin-left: 10px">Delete</button>
+        <button *ngIf="user.role.roleName != 'Admin'" type="button" class="btn btn-outline-danger" (click)="deleteUser(user.userName)" style="margin-left: 10px">Delete</button>
         <br><br>
       </td>
     </tr>

@@ -21,6 +21,7 @@ public class UserController {
     }
 
     @PostMapping({"/registerNewUser"})
+    @PreAuthorize("hasRole('Admin')")
     public String registerNewUser(@RequestBody User user) {
         Iterable<User> users = getAllUsers();
         for (User u : users)
@@ -30,28 +31,15 @@ public class UserController {
         return "Sikeres regisztráció";
     }
 
-    @GetMapping({"/forAdmin"})
-    @PreAuthorize("hasRole('Admin')")
-    public String forAdmin(){
-        return "This URL is only accessible to the admin";
-    }
-
-    @GetMapping({"/forUser"})
-    @PreAuthorize("hasRole('User')")
-    public String forUser(){
-        return "This URL is only accessible to the user";
-    }
-
     @GetMapping({"/getAllUsers"})
+    @PreAuthorize("hasRole('Admin')")
     public List<User> getAllUsers() { return userService.getAllUsers(); }
 
     @GetMapping({"/getAllRoles"})
+    @PreAuthorize("hasRole('Admin')")
     public List<Role> getAllRoles() { return userService.getAllRoles(); }
 
     @DeleteMapping("{userName}")
-    public String deleteDriver(@PathVariable String userName){
-        if (userService.deleteUser(userName))
-            return "Sikeres törlés";
-        return "Sikertelen törlés, nincs ilyen felhasználó.";
-    }
+    @PreAuthorize("hasRole('Admin')")
+    public void deleteUser(@PathVariable String userName) { userService.deleteUser(userName); }
 }

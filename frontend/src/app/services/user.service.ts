@@ -22,15 +22,6 @@ export class UserService {
     return this.httpclient.post(this.PATH_OF_API + '/authenticate', loginData, {headers: this.requestHeader});
   }
 
-  public forUser() {
-    return this.httpclient.get(this.PATH_OF_API + '/forUser', {responseType: 'text'});
-  }
-
-
-  public forAdmin() {
-    return this.httpclient.get(this.PATH_OF_API + '/forAdmin', {responseType: 'text'});
-  }
-
   public getAllUsers(): Observable<User[]> {
     return this.httpclient.get<User[]>(this.PATH_OF_API + '/getAllUsers')
   }
@@ -40,21 +31,29 @@ export class UserService {
   }
 
   public registerNewUser(user: User) {
-    return this.httpclient.post(this.PATH_OF_API + "/registerNewUser", user);
+    return this.httpclient.post(this.PATH_OF_API + "/registerNewUser", user, {responseType: 'text'});
   }
 
   public getAllRoles(): Observable<Role[]> {
     return this.httpclient.get<Role[]>(this.PATH_OF_API + '/getAllRoles')
   }
 
-  public roleMatch(allowedRoles: string | any[]): boolean {
+  public roleMatch(allowedRoles: string): boolean {
     const userRoles: any = this.userAuthService.getRoles();
-    if (userRoles != null && userRoles) {
-      for (let i = 0; i < userRoles.length; i++) {
-        for (let j = 0; j < allowedRoles.length; j++) {
-          if (userRoles[i].roleName === allowedRoles[j]) {
-            return true;
-          }
+    if (userRoles != null) {
+      if (userRoles.roleName === allowedRoles)
+        return true
+    }
+    return false;
+  }
+
+  public roleMatchForForbidden(allowedRoles: string | any[]): boolean {
+    const userRoles: any = this.userAuthService.getRoles();
+    console.log(userRoles.roleName)
+    if (userRoles) {
+      for (let j = 0; j < allowedRoles.length; j++) {
+        if (userRoles.roleName === allowedRoles[j]) {
+          return true;
         }
       }
     }
