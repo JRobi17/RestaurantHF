@@ -1,0 +1,3 @@
+export enum FoodType {
+  APPETIZER, MAINCOURSE, DESSERT, DRINK
+}

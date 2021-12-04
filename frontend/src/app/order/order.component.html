@@ -1,4 +1,45 @@
-<div id="container">
-  <button id="button1" routerLink="/delivery">Házhozszállítás </button>
-  <button id="button2" routerLink="/inplace">Helyben fogyasztás</button>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div>
+  <br><br>
+  <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/ordertype"> Új rendelés hozzáadása</button>
+  <button id="button2" type="button" class="btn btn-outline-primary" routerLink="/closedorders"> Lezárt rendelések megtekintése</button>
+  <br><br>
+  <br><br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> Azonosító </th>
+      <th> Fizetés módja </th>
+      <th> Végösszeg </th>
+      <th> Rendelés módja </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders" >
+      <td> {{ order.orderId }}</td>
+      <td> {{ order.paymentMethod }} </td>
+      <td> {{ order.grandTotal }} </td>
+      <td> {{ order.orderType }}</td>
+      <td>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteOrder(order.orderId)" style="margin-left: 10px">Delete</button>
+        <button type="button" class="btn btn-outline-success" (click)="openModal(template)" style="margin-left: 10px">Close</button>
+        <br><br>
+        <ng-template #template>
+          <div class="modal-body text-center">
+            <p>Kérjük a lezárás előtt értékelje a rendelést!</p>
+            <div class="cont">
+              <div class="stars">
+                <ngx-star-rating [(ngModel)]="rating" [id]="'rating'" ></ngx-star-rating >
+              </div>
+            </div>
+            <button type="button" class="btn btn-default" (click)="finishOrder(order.orderId, rating, order.grandTotal)" >Lezárás</button>
+            <button type="button" class="btn btn-primary" (click)="decline()" >Mégsem</button>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
 </div>

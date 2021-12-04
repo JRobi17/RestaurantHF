@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RestaurantService} from "../services/restaurant.service";
 
 @Component({
   selector: 'app-income',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IncomeComponent implements OnInit {
 
-  constructor() { }
+  grandTotal!: string
+
+  constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit(): void {
+    this.restaurantService.getGrandTotal().subscribe( data =>
+      this.grandTotal = data)
   }
 
 }

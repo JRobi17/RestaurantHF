@@ -49,7 +49,6 @@ export class UserService {
 
   public roleMatchForForbidden(allowedRoles: string | any[]): boolean {
     const userRoles: any = this.userAuthService.getRoles();
-    console.log(userRoles.roleName)
     if (userRoles) {
       for (let j = 0; j < allowedRoles.length; j++) {
         if (userRoles.roleName === allowedRoles[j]) {

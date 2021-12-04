@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import {AuthGuard} from "./auth/auth.guard";
@@ -22,6 +22,13 @@ import { CreateNewEmployeeComponent } from './create-new-employee/create-new-emp
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSelectModule} from "@angular/material/select";
+import { HomeComponent } from './home/home.component';
+import { OrderTypeComponent } from './order-type/order-type.component';
+import {BsModalService} from "ngx-bootstrap/modal";
+import {PositioningService} from "ngx-bootstrap/positioning";
+import {ComponentLoaderFactory} from "ngx-bootstrap/component-loader";
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { ClosedOrdersComponent } from './closed-orders/closed-orders.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +43,10 @@ import {MatSelectModule} from "@angular/material/select";
     IncomeComponent,
     DeliveryComponent,
     InplaceComponent,
-    CreateNewEmployeeComponent
+    CreateNewEmployeeComponent,
+    HomeComponent,
+    OrderTypeComponent,
+    ClosedOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +56,9 @@ import {MatSelectModule} from "@angular/material/select";
     MatInputModule,
     RouterModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxStarRatingModule,
+    ReactiveFormsModule
 
   ],
   providers: [
@@ -56,7 +68,10 @@ import {MatSelectModule} from "@angular/material/select";
       useClass:AuthInterceptor,
       multi:true
     },
-    UserService
+    UserService,
+    BsModalService,
+    ComponentLoaderFactory,
+    PositioningService
   ],
   bootstrap: [AppComponent]
 })

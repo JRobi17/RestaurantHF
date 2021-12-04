@@ -1,9 +1,9 @@
 #button1{
-  width: 300px;
-  height: 40px;
+  width: 500px;
+  height: 60px;
   margin: 0;
   position: absolute;
-  top: 15%;
+  top: 50%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -11,36 +11,19 @@
   color: white;
   border-radius: 8px;
 }
-
 #button2{
-  width: 300px;
-  height: 40px;
+  width: 500px;
+  height: 60px;
   margin: 0;
   position: absolute;
-  top: 22%;
+  top: 50%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -200%);
   background-color: #4CAF50;
   color: white;
   border-radius: 8px;
 }
-
-.cont {
-  width: 93%;
-  max-width: 350px;
+#container{
   text-align: center;
-  margin: 4% auto;
-  padding: 30px 0;
-  background: #EEE;
-  color: #EEE;
-  border-radius: 5px;
-  border: thin solid #444;
-  overflow: hidden;
 }
-
-div.stars {
-  width: 270px;
-  display: inline-block;
-}
-

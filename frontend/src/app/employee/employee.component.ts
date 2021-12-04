@@ -10,7 +10,6 @@ import {User} from "../classes/user";
 export class EmployeeComponent implements OnInit {
 
   users!: User[]
-  currentIndex = -1;
 
   constructor(private userService: UserService) { }
 

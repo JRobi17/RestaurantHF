@@ -1,0 +1,22 @@
+<div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> Azonosító </th>
+      <th> Fizetés módja </th>
+      <th> Végösszeg </th>
+      <th> Rendelés módja </th>
+      <th> Értékelés </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders" >
+      <td> {{ order.orderId }}</td>
+      <td> {{ order.paymentMethod }} </td>
+      <td> {{ order.grandTotal }} </td>
+      <td> {{ order.orderType }}</td>
+      <td> {{ order.rating }}/5</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
