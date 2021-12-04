@@ -2,8 +2,8 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {OrderEntity} from "../classes/orderentity";
 import {OrderService} from "../services/order.service";
 import {Router} from "@angular/router";
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-order',

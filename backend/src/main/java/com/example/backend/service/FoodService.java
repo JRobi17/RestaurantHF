@@ -5,6 +5,7 @@ import com.example.backend.model.Food;
 import com.example.backend.model.FoodType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service

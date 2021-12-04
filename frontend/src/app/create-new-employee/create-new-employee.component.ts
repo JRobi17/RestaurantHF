@@ -3,7 +3,6 @@ import {User} from "../classes/user";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 import {Role} from "../classes/role";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-create-new-employee',

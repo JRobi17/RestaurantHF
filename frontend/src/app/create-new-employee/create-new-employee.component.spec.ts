@@ -1,7 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateNewEmployeeComponent } from './create-new-employee.component';
-import {MatSelectModule} from "@angular/material/select";
+import {CreateNewEmployeeComponent} from './create-new-employee.component';
 import {MatOptionModule} from "@angular/material/core";
 
 describe('CreateNewEmployeeComponent', () => {

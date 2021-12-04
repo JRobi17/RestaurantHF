@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ClosedOrdersComponent } from './closed-orders.component';
+import {ClosedOrdersComponent} from './closed-orders.component';
 
 describe('ClosedOrdersComponent', () => {
   let component: ClosedOrdersComponent;
