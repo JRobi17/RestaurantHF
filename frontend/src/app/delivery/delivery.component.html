@@ -1,11 +1,27 @@
 <div class="col-md-9 offset-md-2">
-  <form (ngSubmit)="onSubmit()">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> Étel neve </th>
+      <th> Ár </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let food of selectedFoods" >
+      <td> {{ food.name }}</td>
+      <td> {{ food.price }} </td>
+      <td>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteFromMenu(food)" style="margin-left: 10px">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
     <label>
       Előétel
     </label>
     <mat-form-field appearance="fill">
-      <mat-select [(ngModel)]="selectedAppetizer" name="appetizer" required>
-        <mat-option [value]="food"> Nem kérek </mat-option>
+      <mat-select [(ngModel)]="selectedAppetizer" name="appetizer">
         <ng-container *ngFor="let food of foods">
           <mat-option *ngIf="food.foodType === allFoodTypes.Appetizer" [value]="food">
             {{ food.name }}
@@ -13,13 +29,13 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
+    <button (click)="addToMenu(selectedAppetizer)"> Add </button>
     <br><br>
     <label>
       Főétel
     </label>
     <mat-form-field appearance="fill">
-      <mat-select [(ngModel)]="selectedMainCourse" name="maincourse" required>
-        <mat-option [value]="food"> Nem kérek </mat-option>
+      <mat-select [(ngModel)]="selectedMainCourse" name="maincourse">
         <ng-container *ngFor="let food of foods">
           <mat-option *ngIf="food.foodType === allFoodTypes.MainCourse" [value]="food">
             {{ food.name }}
@@ -27,13 +43,13 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
+    <button (click)="addToMenu(selectedMainCourse)"> Add </button>
     <br><br>
     <label>
       Desszert
     </label>
     <mat-form-field appearance="fill">
       <mat-select [(ngModel)]="selectedDessert" name="dessert">
-        <mat-option [value]="food"> Nem kérek </mat-option>
         <ng-container *ngFor="let food of foods">
           <mat-option *ngIf="food.foodType === allFoodTypes.Dessert" [value]="food">
             {{ food.name }}
@@ -41,13 +57,13 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
+    <button (click)="addToMenu(selectedDessert)"> Add </button>
     <br><br>
     <label>
       Ital
     </label>
     <mat-form-field appearance="fill">
-      <mat-select [(ngModel)]="selectedDrink" name="drink" required>
-        <mat-option [value]="food"> Nem kérek </mat-option>
+      <mat-select [(ngModel)]="selectedDrink" name="drink">
         <ng-container *ngFor="let food of foods">
           <mat-option *ngIf="food.foodType === allFoodTypes.Drink" [value]="food">
             {{ food.name }}
@@ -55,19 +71,20 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
+    <button (click)="addToMenu(selectedDrink)"> Add </button>
     <br><br>
     <label>
       Fizetési mód
     </label>
     <mat-form-field appearance="fill">
-      <mat-select [(ngModel)]="selectedPaymentMethod" name="paymentMethod">
+      <mat-select [(ngModel)]="selectedPaymentMethod" name="paymentMethod" required>
         <mat-option [value]="allPaymentMethod.Card"> {{ allPaymentMethod.Card }} </mat-option>
         <mat-option [value]="allPaymentMethod.Cash"> {{ allPaymentMethod.Cash }} </mat-option>
       </mat-select>
     </mat-form-field>
-    <button class="btn btn-info" type="submit">
-      Submit
-    </button>
     <br><br>
-  </form>
+  <h3>Végösszeg: {{ price }} Forint</h3>
+  <button (click)="onSubmit()" class="btn btn-info" type="submit">
+    Tovább
+  </button>
 </div>

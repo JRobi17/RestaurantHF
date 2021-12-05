@@ -28,6 +28,8 @@ export class DeliveryComponent implements OnInit {
   allFoodTypes: typeof FoodType = FoodType
   allPaymentMethod: typeof PaymentMethod = PaymentMethod;
 
+  price: number = 0
+
   constructor(private orderService: OrderService, private foodService: FoodService, private router: Router) {
     this.order.orderType = 1
     this.order.rating = 0;
@@ -39,9 +41,23 @@ export class DeliveryComponent implements OnInit {
       this.foods = data)
   }
 
+  addToMenu(food: Food) {
+    this.selectedFoods.push(food)
+    this.price += food.price
+  }
+
+  deleteFromMenu(food: Food) {
+    this.selectedFoods.forEach( (item, index) => {
+      if (item === food)
+        this.selectedFoods.splice(index, 1)
+    })
+    this.price -= food.price
+    }
+
+
   onSubmit() {
-    this.order.foodList.push(this.selectedAppetizer, this.selectedMainCourse, this.selectedDessert, this.selectedDrink)
-    this.order.grandTotal = this.selectedAppetizer.price + this.selectedMainCourse.price + this.selectedDessert.price + this.selectedDrink.price
+    this.order.foodList = this.selectedFoods
+    this.order.grandTotal = this.price
     this.order.paymentMethod = this.selectedPaymentMethod
     this.orderService.addNewOrder(this.order).subscribe( () =>
       this.router.navigate(['/order']))

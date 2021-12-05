@@ -29,6 +29,7 @@ import {PositioningService} from "ngx-bootstrap/positioning";
 import {ComponentLoaderFactory} from "ngx-bootstrap/component-loader";
 import {NgxStarRatingModule} from 'ngx-star-rating';
 import {ClosedOrdersComponent} from './closed-orders/closed-orders.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {ClosedOrdersComponent} from './closed-orders/closed-orders.component';
     MatSelectModule,
     BrowserAnimationsModule,
     NgxStarRatingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
 
   ],
   providers: [
