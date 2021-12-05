@@ -1,3 +1,8 @@
 export enum FoodType {
-  APPETIZER, MAINCOURSE, DESSERT, DRINK
+  Appetizer = 'APPETIZER',
+  MainCourse = 'MAINCOURSE',
+  Dessert = 'DESSERT',
+  Drink = 'DRINK'
 }
+
+

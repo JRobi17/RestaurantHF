@@ -30,4 +30,8 @@ export class OrderService {
   public finishOrder(id: number, rating: number, grandTotal: number) {
     return this.httpclient.put(this.PATH_OF_API + '/orders/' + id + '/' + rating + '/' + grandTotal,  {responseType: 'text'})
   }
+
+  public addNewOrder(order: OrderEntity) {
+    return this.httpclient.post(this.PATH_OF_API + "/addNewOrder", order, {responseType: 'text'})
+  }
 }

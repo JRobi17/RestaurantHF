@@ -16,6 +16,7 @@ public class FoodService {
 
     public void initFood() {
 
+        /*
         Food food1 = new Food();
         food1.setName("Marhagulyás");
         food1.setFoodType(FoodType.APPETIZER);
@@ -39,6 +40,7 @@ public class FoodService {
         food4.setFoodType(FoodType.DRINK);
         food4.setPrice(390);
         foodDao.save(food4);
+        */
     }
 
     public List<Food> getAllFoods() {

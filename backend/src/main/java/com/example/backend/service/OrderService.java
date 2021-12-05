@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.dao.OrderDao;
+import com.example.backend.model.Food;
 import com.example.backend.model.OrderEntity;
 import com.example.backend.model.OrderType;
 import com.example.backend.model.PaymentMethod;
@@ -20,11 +21,13 @@ public class OrderService {
     private RestaurantService restaurantService;
 
     public void initOrder() {
+        /*
         OrderEntity order1 = new OrderEntity();
         order1.setPaymentMethod(PaymentMethod.CARD);
         order1.setGrandTotal(10000);
         order1.setOrderType(OrderType.DELIVERY);
         orderDao.save(order1);
+         */
     }
 
     public List<OrderEntity> getAllOngoingOrders() {
@@ -63,5 +66,14 @@ public class OrderService {
         for (OrderEntity o : orders)
             if (o.getOrderId() == id)
                 orderDao.delete(o);
+    }
+
+    public void addNewOrder(OrderEntity order) {
+        OrderEntity newOrder = new OrderEntity();
+        newOrder.setOrderType(order.getOrderType());
+        newOrder.setRating(order.getRating());
+        newOrder.setGrandTotal(order.getGrandTotal());
+        newOrder.setPaymentMethod(order.getPaymentMethod());
+        orderDao.save(newOrder);
     }
 }

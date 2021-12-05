@@ -1,8 +1,7 @@
 package com.example.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class OrderEntity {
@@ -15,6 +14,14 @@ public class OrderEntity {
     private OrderType orderType;
     private boolean isClosed = false;
     private int rating;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "Order_Food",
+            joinColumns = { @JoinColumn(name = "order_id") },
+            inverseJoinColumns = { @JoinColumn(name = "food_id") }
+    )
+    private List<Food> foodList;
+
 
     public int getOrderId() {
         return orderId;
@@ -62,5 +69,13 @@ public class OrderEntity {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public List<Food> getFoodList() {
+        return foodList;
+    }
+
+    public void setFoodList(List<Food> foodList) {
+        this.foodList = foodList;
     }
 }

@@ -1,0 +1,73 @@
+<div class="col-md-9 offset-md-2">
+  <form (ngSubmit)="onSubmit()">
+    <label>
+      Előétel
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedAppetizer" name="appetizer" required>
+        <mat-option [value]="food"> Nem kérek </mat-option>
+        <ng-container *ngFor="let food of foods">
+          <mat-option *ngIf="food.foodType === allFoodTypes.Appetizer" [value]="food">
+            {{ food.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <br><br>
+    <label>
+      Főétel
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedMainCourse" name="maincourse" required>
+        <mat-option [value]="food"> Nem kérek </mat-option>
+        <ng-container *ngFor="let food of foods">
+          <mat-option *ngIf="food.foodType === allFoodTypes.MainCourse" [value]="food">
+            {{ food.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <br><br>
+    <label>
+      Desszert
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedDessert" name="dessert">
+        <mat-option [value]="food"> Nem kérek </mat-option>
+        <ng-container *ngFor="let food of foods">
+          <mat-option *ngIf="food.foodType === allFoodTypes.Dessert" [value]="food">
+            {{ food.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <br><br>
+    <label>
+      Ital
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedDrink" name="drink" required>
+        <mat-option [value]="food"> Nem kérek </mat-option>
+        <ng-container *ngFor="let food of foods">
+          <mat-option *ngIf="food.foodType === allFoodTypes.Drink" [value]="food">
+            {{ food.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <br><br>
+    <label>
+      Fizetési mód
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedPaymentMethod" name="paymentMethod">
+        <mat-option [value]="allPaymentMethod.Card"> {{ allPaymentMethod.Card }} </mat-option>
+        <mat-option [value]="allPaymentMethod.Cash"> {{ allPaymentMethod.Cash }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="btn btn-info" type="submit">
+      Submit
+    </button>
+    <br><br>
+  </form>
+</div>

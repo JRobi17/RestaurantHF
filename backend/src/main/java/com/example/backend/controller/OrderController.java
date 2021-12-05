@@ -30,4 +30,7 @@ public class OrderController {
 
     @DeleteMapping("/orders/{id}")
     public void deleteOrder(@PathVariable int id) { orderService.deleteOrder(id); }
+
+    @PostMapping("/addNewOrder")
+    public void addNewOrder(@RequestBody OrderEntity order) { orderService.addNewOrder(order); }
 }
