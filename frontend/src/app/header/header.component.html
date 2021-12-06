@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Restaurant</a>
+    <a class="navbar-brand" href="#" routerLink="/home">Restaurant</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,21 +19,14 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/order"
              *ngIf="userService.roleMatch('Admin') || userService.roleMatch('Host')"
-          >Rendelések felvitele</a>
+          >Rendelések</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/employee"
              *ngIf="userService.roleMatch('Admin')"
           >Alkalmazottak megtekintése</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/income"
-             *ngIf="userService.roleMatch('Admin')"
-          >Havi bevétel</a>
-        </li>
-
       </ul>
-      <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Bejelentkezés</button>
       <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()" >Kijelentkezés</button>
     </div>
   </div>

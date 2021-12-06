@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InplaceComponent } from './inplace.component';
+import {InplaceComponent} from './inplace.component';
 
 describe('InplaceComponent', () => {
   let component: InplaceComponent;

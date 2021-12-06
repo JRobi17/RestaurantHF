@@ -1,1 +1,137 @@
-<p>delivery works!</p>
+<div *ngIf="!addressView" class="col-md-9 offset-md-2">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> Étel neve </th>
+      <th> Ár </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let food of selectedFoods" >
+      <td> {{ food.name }}</td>
+      <td> {{ food.price }} </td>
+      <td>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteFromMenu(food)" style="margin-left: 10px">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+    <label>
+      Előétel
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedAppetizer" name="appetizer">
+        <ng-container *ngFor="let food of foods">
+          <mat-option *ngIf="food.foodType === allFoodTypes.Appetizer" [value]="food">
+            {{ food.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="addToMenu(selectedAppetizer)"> Add </button>
+    <br><br>
+    <label>
+      Főétel
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedMainCourse" name="maincourse">
+        <ng-container *ngFor="let food of foods">
+          <mat-option *ngIf="food.foodType === allFoodTypes.MainCourse" [value]="food">
+            {{ food.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="addToMenu(selectedMainCourse)"> Add </button>
+    <br><br>
+    <label>
+      Desszert
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedDessert" name="dessert">
+        <ng-container *ngFor="let food of foods">
+          <mat-option *ngIf="food.foodType === allFoodTypes.Dessert" [value]="food">
+            {{ food.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="addToMenu(selectedDessert)"> Add </button>
+    <br><br>
+    <label>
+      Ital
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedDrink" name="drink">
+        <ng-container *ngFor="let food of foods">
+          <mat-option *ngIf="food.foodType === allFoodTypes.Drink" [value]="food">
+            {{ food.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="addToMenu(selectedDrink)"> Add </button>
+    <br><br>
+  <h3>Végösszeg: {{ price }} Forint</h3>
+  <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
+  <button (click)="pageSwap()" class="btn btn-info" type="submit">
+    Tovább
+  </button>
+</div>
+
+<div *ngIf="addressView" class="col-md-9 offset-md-2">
+  <h2>Szállítási adatok</h2>
+  <div class="form-group">
+    <label>
+      Vásárló neve
+    </label>
+    <label for="customerName"></label><input type="text" class="form-control" id="customerName"
+                                         [(ngModel)]="order.address.customerName" name="customerName">
+  </div>
+  <div class="form-group">
+    <label>
+      Város
+    </label>
+    <label for="city"></label><input type="text" class="form-control" id="city"
+                                              [(ngModel)]="order.address.city" name="city" >
+  </div>
+  <div class="form-group">
+    <label>
+      Irányítószám
+    </label>
+    <label for="zipCode"></label><input type="text" class="form-control" id="zipCode"
+                                             [(ngModel)]="order.address.zipCode" name="zipCode" required="required">
+  </div>
+  <div class="form-group">
+    <label>
+      Utca, házszám
+    </label>
+    <label for="street"></label><input type="text" class="form-control" id="street"
+                                             [(ngModel)]="order.address.street" name="street"  required="required">
+  </div>
+  <div class="form-group">
+    <label>
+      Telefonszám
+    </label>
+    <label for="phoneNumber"></label><input type="text" class="form-control" id="phoneNumber"
+                                       [(ngModel)]="order.address.phoneNumber" name="phoneNumber"  required="required">
+  </div>
+  <label>
+    Fizetési mód
+  </label>
+  <mat-form-field appearance="fill">
+    <mat-select [(ngModel)]="selectedPaymentMethod" name="paymentMethod" required>
+      <mat-option [value]="allPaymentMethod.Card"> {{ allPaymentMethod.Card }} </mat-option>
+      <mat-option [value]="allPaymentMethod.Cash"> {{ allPaymentMethod.Cash }} </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br><br>
+  <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
+  <button (click)="onSubmit()" class="btn btn-info" type="submit">
+    Rendelés leadása
+  </button>
+  <button (click)="pageSwap()" class="btn btn-info" type="submit">
+    Tétel módosítás
+  </button>
+</div>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 import {UserService} from "../services/user.service";
 import {UserAuthService} from "../services/user-auth.service";
 
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       (response: any) => {
         this.userAuthService.setRoles(response.user.role);
         this.userAuthService.setToken(response.jwtToken);
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       },
       (error: any) => {
         this._isAuthSuccessful = false;

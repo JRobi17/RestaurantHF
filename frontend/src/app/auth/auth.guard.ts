@@ -1,11 +1,5 @@
 import {Injectable} from '@angular/core';
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-  Router,
-} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from '@angular/router';
 import {Observable} from 'rxjs';
 import {UserAuthService} from "../services/user-auth.service";
 import {UserService} from "../services/user.service";
@@ -31,7 +25,6 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     if (this.userAuthService.getToken() !== null) {
       const role = route.data['roles'] as Array<string>;
-      console.log(role)
       if (role) {
         const match = this.userService.roleMatchForForbidden(role);
         if (match) {

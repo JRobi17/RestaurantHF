@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../classes/user";
 
@@ -10,7 +10,6 @@ import {User} from "../classes/user";
 export class EmployeeComponent implements OnInit {
 
   users!: User[]
-  currentIndex = -1;
 
   constructor(private userService: UserService) { }
 
