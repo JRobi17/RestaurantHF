@@ -1,4 +1,4 @@
-<div class="col-md-9 offset-md-2">
+<div *ngIf="!addressView" class="col-md-9 offset-md-2">
   <table class="table table-striped">
     <thead>
     <tr>
@@ -73,18 +73,65 @@
     </mat-form-field>
     <button (click)="addToMenu(selectedDrink)"> Add </button>
     <br><br>
-    <label>
-      Fizetési mód
-    </label>
-    <mat-form-field appearance="fill">
-      <mat-select [(ngModel)]="selectedPaymentMethod" name="paymentMethod" required>
-        <mat-option [value]="allPaymentMethod.Card"> {{ allPaymentMethod.Card }} </mat-option>
-        <mat-option [value]="allPaymentMethod.Cash"> {{ allPaymentMethod.Cash }} </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br><br>
   <h3>Végösszeg: {{ price }} Forint</h3>
-  <button (click)="onSubmit()" class="btn btn-info" type="submit">
+  <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
+  <button (click)="pageSwap()" class="btn btn-info" type="submit">
     Tovább
+  </button>
+</div>
+
+<div *ngIf="addressView" class="col-md-9 offset-md-2">
+  <h2>Szállítási adatok</h2>
+  <div class="form-group">
+    <label>
+      Vásárló neve
+    </label>
+    <label for="customerName"></label><input type="text" class="form-control" id="customerName"
+                                         [(ngModel)]="order.address.customerName" name="customerName">
+  </div>
+  <div class="form-group">
+    <label>
+      Város
+    </label>
+    <label for="city"></label><input type="text" class="form-control" id="city"
+                                              [(ngModel)]="order.address.city" name="city" >
+  </div>
+  <div class="form-group">
+    <label>
+      Irányítószám
+    </label>
+    <label for="zipCode"></label><input type="text" class="form-control" id="zipCode"
+                                             [(ngModel)]="order.address.zipCode" name="zipCode" required="required">
+  </div>
+  <div class="form-group">
+    <label>
+      Utca, házszám
+    </label>
+    <label for="street"></label><input type="text" class="form-control" id="street"
+                                             [(ngModel)]="order.address.street" name="street"  required="required">
+  </div>
+  <div class="form-group">
+    <label>
+      Telefonszám
+    </label>
+    <label for="phoneNumber"></label><input type="text" class="form-control" id="phoneNumber"
+                                       [(ngModel)]="order.address.phoneNumber" name="phoneNumber"  required="required">
+  </div>
+  <label>
+    Fizetési mód
+  </label>
+  <mat-form-field appearance="fill">
+    <mat-select [(ngModel)]="selectedPaymentMethod" name="paymentMethod" required>
+      <mat-option [value]="allPaymentMethod.Card"> {{ allPaymentMethod.Card }} </mat-option>
+      <mat-option [value]="allPaymentMethod.Cash"> {{ allPaymentMethod.Cash }} </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br><br>
+  <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
+  <button (click)="onSubmit()" class="btn btn-info" type="submit">
+    Rendelés leadása
+  </button>
+  <button (click)="pageSwap()" class="btn btn-info" type="submit">
+    Tétel módosítás
   </button>
 </div>

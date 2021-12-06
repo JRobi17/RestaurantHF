@@ -14,6 +14,8 @@ public class OrderEntity {
     private OrderType orderType;
     private boolean isClosed = false;
     private int rating;
+    @OneToOne(cascade = CascadeType.ALL)
+    private AddressEntity address;
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "Order_Food",
@@ -21,7 +23,6 @@ public class OrderEntity {
             inverseJoinColumns = { @JoinColumn(name = "food_id") }
     )
     private List<Food> foodList;
-
 
     public int getOrderId() {
         return orderId;
@@ -77,5 +78,13 @@ public class OrderEntity {
 
     public void setFoodList(List<Food> foodList) {
         this.foodList = foodList;
+    }
+
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
     }
 }

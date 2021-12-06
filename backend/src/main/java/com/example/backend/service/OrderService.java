@@ -1,10 +1,8 @@
 package com.example.backend.service;
 
 import com.example.backend.dao.OrderDao;
-import com.example.backend.model.Food;
-import com.example.backend.model.OrderEntity;
-import com.example.backend.model.OrderType;
-import com.example.backend.model.PaymentMethod;
+import com.example.backend.model.*;
+import org.apache.tomcat.jni.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +72,13 @@ public class OrderService {
         newOrder.setRating(order.getRating());
         newOrder.setGrandTotal(order.getGrandTotal());
         newOrder.setPaymentMethod(order.getPaymentMethod());
+        AddressEntity address = new AddressEntity();
+        address.setCustomerName(order.getAddress().getCustomerName());
+        address.setCity(order.getAddress().getCity());
+        address.setZipCode(order.getAddress().getZipCode());
+        address.setPhoneNumber(order.getAddress().getPhoneNumber());
+        address.setStreet(order.getAddress().getStreet());
+        newOrder.setAddress(address);
         orderDao.save(newOrder);
     }
 }

@@ -1,6 +1,7 @@
 import {PaymentMethod} from "./paymentMethod";
 import {OrderType} from "./orderType";
 import {Food} from "./food";
+import {Address} from "./address";
 
 export class OrderEntity {
   orderId!: number
@@ -10,4 +11,5 @@ export class OrderEntity {
   isClosed!: boolean
   rating!: number
   foodList!: Food[]
+  address!: Address
 }

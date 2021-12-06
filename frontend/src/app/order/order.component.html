@@ -24,6 +24,8 @@
       <td>
         <button type="button" class="btn btn-outline-danger" (click)="deleteOrder(order.orderId)" style="margin-left: 10px">Delete</button>
         <button type="button" class="btn btn-outline-success" (click)="openModal(template)" style="margin-left: 10px">Close</button>
+        <button type="button" class="btn btn-outline-info" [disabled]="order.grandTotal == 1590" (click)="openModal(address)" style="margin-left: 10px">Info</button>
+
         <br><br>
         <ng-template #template>
           <div class="modal-body text-center">
@@ -35,6 +37,14 @@
             </div>
             <button type="button" class="btn btn-default" (click)="finishOrder(order.orderId, rating, order.grandTotal)" >Lezárás</button>
             <button type="button" class="btn btn-primary" (click)="decline()" >Mégsem</button>
+          </div>
+        </ng-template>
+        <ng-template #address>
+          <div class="modal-body text-center">
+            <p>A vásárló adatai:</p>
+            <p> Név: {{ order.address.customerName}}</p>
+            <p> Cím: {{ order.address.city}}, {{ order.address.zipCode}}, {{ order.address.street }}</p>
+            <p> Telefonszám: {{ order.address.phoneNumber }}</p>
           </div>
         </ng-template>
       </td>
