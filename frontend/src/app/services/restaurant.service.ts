@@ -24,4 +24,8 @@ export class RestaurantService {
   public getRestaurant() {
     return this.httpclient.get(this.PATH_OF_API + "/restaurant", {responseType: 'text'})
   }
+
+  public getAvgRating() {
+    return this.httpclient.get(this.PATH_OF_API + "/getAvgRating", {responseType: 'text'})
+  }
 }

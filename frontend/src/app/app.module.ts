@@ -15,7 +15,6 @@ import {OrderComponent} from './order/order.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {ReservationComponent} from './reservation/reservation.component';
 import {TableComponent} from './table/table.component';
-import {IncomeComponent} from './income/income.component';
 import {DeliveryComponent} from './delivery/delivery.component';
 import {InplaceComponent} from './inplace/inplace.component';
 import {CreateNewEmployeeComponent} from './create-new-employee/create-new-employee.component';
@@ -41,7 +40,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EmployeeComponent,
     ReservationComponent,
     TableComponent,
-    IncomeComponent,
     DeliveryComponent,
     InplaceComponent,
     CreateNewEmployeeComponent,

@@ -26,12 +26,6 @@
              *ngIf="userService.roleMatch('Admin')"
           >Alkalmazottak megtekintése</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/income"
-             *ngIf="userService.roleMatch('Admin')"
-          >Napi bevétel</a>
-        </li>
-
       </ul>
       <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()" >Kijelentkezés</button>
     </div>

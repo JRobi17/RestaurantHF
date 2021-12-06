@@ -33,4 +33,7 @@ public class OrderController {
 
     @PostMapping("/addNewOrder")
     public void addNewOrder(@RequestBody OrderEntity order) { orderService.addNewOrder(order); }
+
+    @GetMapping("/getAvgRating")
+    private String getAvgRating() { return orderService.getAvgRating(); }
 }

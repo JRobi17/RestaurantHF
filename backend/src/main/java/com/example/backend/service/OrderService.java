@@ -2,10 +2,10 @@ package com.example.backend.service;
 
 import com.example.backend.dao.OrderDao;
 import com.example.backend.model.*;
-import org.apache.tomcat.jni.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +17,8 @@ public class OrderService {
 
     @Autowired
     private RestaurantService restaurantService;
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public void initOrder() {
         /*
@@ -80,5 +82,19 @@ public class OrderService {
         address.setStreet(order.getAddress().getStreet());
         newOrder.setAddress(address);
         orderDao.save(newOrder);
+    }
+
+    public String getAvgRating() {
+        List<OrderEntity> orders = getAllClosedOrders();
+        if (orders == null) {
+            return "0";
+        }
+        double counter = 0;
+        double totalRatings = 0;
+        for (OrderEntity o : orders) {
+            counter++;
+            totalRatings += o.getRating();
+        }
+        return String.valueOf(df.format(totalRatings / counter));
     }
 }
