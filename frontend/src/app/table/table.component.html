@@ -1,1 +1,15 @@
-<p>table works!</p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<h2> Elérhető asztalok száma: {{numberOfFreeTables}}</h2>
+<div class="card-group  offset-md-1 col-md-10">
+  <div class="card" *ngFor="let table of tables; let i = index">
+    <div class="card-body" [ngStyle]="{'background-color': table.isTaken? 'red' : '#00ff00'}">
+      <h5 class="card-title">{{i + 1}}. asztal</h5>
+      <p> Kapacitás: {{ table.capacity }}</p>
+      <p *ngIf="!table.isTaken"> Státusz: szabad</p>
+      <p *ngIf="table.isTaken"> Státusz: foglalt</p>
+      <button (click)="routeToTableReservations(table.id)">Foglalás</button>
+    </div>
+  </div>
+</div>
