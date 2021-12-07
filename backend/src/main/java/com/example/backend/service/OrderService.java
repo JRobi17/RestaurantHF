@@ -86,8 +86,8 @@ public class OrderService {
 
     public String getAvgRating() {
         List<OrderEntity> orders = getAllClosedOrders();
-        if (orders == null) {
-            return "0";
+        if (orders == null || orders.size() == 0) {
+            return "-";
         }
         double counter = 0;
         double totalRatings = 0;
