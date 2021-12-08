@@ -1,1 +1,70 @@
-<p>reservation works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div *ngIf="!reservationView">
+  <br><br>
+  <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/createnewreservation"> Új foglalás hozzáadása</button>
+  <button id="button2" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Lezárt foglalások megtekintése</button>
+  <br><br>
+  <br><br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> Asztal azonosítója </th>
+      <th> Foglalás kezdete </th>
+      <th> Foglalás vége </th>
+      <th> Vendég neve </th>
+      <th> Státusz </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let reservation of openReservationList">
+        <td> {{ reservation.tableId }}</td>
+        <td> {{ formatDate(reservation.reservationStart)  }} </td>
+        <td> {{ formatDate(reservation.reservationEnd) }}  </td>
+        <td> {{ reservation.guest.customerName }}</td>
+        <div *ngIf="!reservation.isOver">
+          <td> Folyamatban </td>
+        </div>
+        <div *ngIf="reservation.isOver">
+          <td> Befejeződött </td>
+        </div>
+        <td> {{ reservation.isOver }}</td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="reservationView">
+  <br><br>
+  <button id="button4" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Folyamatban lévő foglalások megtekintése</button>
+  <br><br>
+  <br><br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> Asztal azonosítója </th>
+      <th> Foglalás kezdete </th>
+      <th> Foglalás vége </th>
+      <th> Vendég neve </th>
+      <th> Státusz </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let reservation of closedReservationList">
+      <td> {{ reservation.tableId }}</td>
+      <td> {{ formatDate(reservation.reservationStart)  }} </td>
+      <td> {{ formatDate(reservation.reservationEnd) }}  </td>
+      <td> {{ reservation.guest.customerName }}</td>
+      <div *ngIf="!reservation.isOver">
+        <td> Folyamatban </td>
+      </div>
+      <div *ngIf="reservation.isOver">
+        <td> Befejeződött </td>
+      </div>
+      <td> {{ reservation.isOver }}</td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

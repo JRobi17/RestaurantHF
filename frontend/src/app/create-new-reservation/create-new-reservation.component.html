@@ -1,0 +1,80 @@
+<div *ngIf="!guestView" class="col-md-9 offset-md-2">
+  <form (ngSubmit)="onSubmit()">
+    <label>
+      Asztal azonosítója
+    </label>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="selectedTable" name="role">
+        <mat-option *ngFor="let table of tables" [value]="table.tableId">
+          {{table.tableId}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label>
+        Foglalás kezdete
+      </label>
+      <label for="date"></label><input type="datetime-local" class="form-control" id="date"
+                                           [(ngModel)]="reservation.reservationStart" name="date">
+    </div>
+
+    <div class="form-group">
+      <label>
+        Vendégek száma
+      </label>
+      <label for="amountOfGuests"></label><input type="text" class="form-control" id="amountOfGuests"
+                                                [(ngModel)]="reservation.amountOfGuests" name="amountOfGuests" >
+    </div>
+    <br><br>
+    <button (click)="pageSwap()" class="btn btn-info" type="submit">
+      Tovább
+    </button>
+    <br><br>
+    <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
+  </form>
+</div>
+
+<div *ngIf="guestView" class="col-md-9 offset-md-2">
+  <h2>Szállítási adatok</h2>
+  <div class="form-group">
+    <label>
+      Vásárló neve
+    </label>
+    <label for="customerName"></label><input type="text" class="form-control" id="customerName"
+                                             [(ngModel)]="reservation.guest.customerName" name="customerName">
+  </div>
+  <div class="form-group">
+    <label>
+      Város
+    </label>
+    <label for="city"></label><input type="text" class="form-control" id="city"
+                                     [(ngModel)]="reservation.guest.city" name="city" >
+  </div>
+  <div class="form-group">
+    <label>
+      Irányítószám
+    </label>
+    <label for="zipCode"></label><input type="text" class="form-control" id="zipCode"
+                                        [(ngModel)]="reservation.guest.zipCode" name="zipCode" required="required">
+  </div>
+  <div class="form-group">
+    <label>
+      Utca, házszám
+    </label>
+    <label for="street"></label><input type="text" class="form-control" id="street"
+                                       [(ngModel)]="reservation.guest.street" name="street"  required="required">
+  </div>
+  <div class="form-group">
+    <label>
+      Telefonszám
+    </label>
+    <label for="phoneNumber"></label><input type="text" class="form-control" id="phoneNumber"
+                                            [(ngModel)]="reservation.guest.phoneNumber" name="phoneNumber"  required="required">
+  </div>
+  <br><br>
+  <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
+  <button (click)="onSubmit()" class="btn btn-info" type="submit">
+    Rendelés leadása
+  </button>
+</div>

@@ -3,8 +3,11 @@ package com.example.backend.controller;
 import com.example.backend.model.Reservation;
 import com.example.backend.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Time;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 public class ReservationController {
@@ -13,7 +16,16 @@ public class ReservationController {
     private ReservationService reservationService;
 
     @PostMapping("/reservation/makeAReservation")
-    public void makeAReservation(Reservation reservation) {
+    public void makeAReservation(@RequestBody Reservation reservation) {
         this.reservationService.makeAReservation(reservation);
     }
+
+    @GetMapping("/reservation/getOpenReservations")
+    public List<Reservation> getOpenReservations() { return this.reservationService.getOpenReservations(); }
+
+    @GetMapping("/reservation/getClosedReservations")
+    public List<Reservation> getClosedReservations() { return this.reservationService.getClosedReservations(); }
+
+    @GetMapping("/reservation/{tableId}")
+    public List<Reservation> getReservationForTable(@PathVariable int tableId) { return this.reservationService.getReservationsForTable(tableId); }
 }

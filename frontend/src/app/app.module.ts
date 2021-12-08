@@ -29,6 +29,7 @@ import {ComponentLoaderFactory} from "ngx-bootstrap/component-loader";
 import {NgxStarRatingModule} from 'ngx-star-rating';
 import {ClosedOrdersComponent} from './closed-orders/closed-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateNewReservationComponent } from './create-new-reservation/create-new-reservation.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CreateNewEmployeeComponent,
     HomeComponent,
     OrderTypeComponent,
-    ClosedOrdersComponent
+    ClosedOrdersComponent,
+    CreateNewReservationComponent
   ],
   imports: [
     BrowserModule,
