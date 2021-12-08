@@ -1,7 +1,7 @@
 import {Reservation} from "./reservation";
 
 export class Table {
-  id!: number
+  tableId!: number
   capacity!: number
   isTaken: boolean = false
   reservationList!: Reservation[]

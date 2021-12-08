@@ -13,6 +13,7 @@ import {InplaceComponent} from "./inplace/inplace.component";
 import {HomeComponent} from "./home/home.component";
 import {OrderTypeComponent} from "./order-type/order-type.component";
 import {ClosedOrdersComponent} from "./closed-orders/closed-orders.component";
+import {CreateNewReservationComponent} from "./create-new-reservation/create-new-reservation.component";
 
 const routes: Routes = [
   { path: '', redirectTo: "login", pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'employee', component: EmployeeComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
   { path: 'inplace', component: InplaceComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'Host', 'Cook', 'Waiter']}},
   { path: 'createnewemployee', component: CreateNewEmployeeComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
+  { path: 'createnewreservation', component: CreateNewReservationComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'Host', 'Cook', 'Waiter']}},
   { path: 'ordertype', component: OrderTypeComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'Host', 'Cook', 'Waiter']}},
   { path: 'closedorders', component: ClosedOrdersComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'Host', 'Cook', 'Waiter']}}
 ];

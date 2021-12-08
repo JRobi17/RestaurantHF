@@ -1,7 +1,9 @@
 package com.example.backend.model;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Reservation {
@@ -14,8 +16,7 @@ public class Reservation {
     @OneToOne(cascade = CascadeType.ALL)
     private AddressEntity guest;
     private int amountOfGuests;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private TableEntity table;
+    private int tableId;
     private boolean isOver = false;
 
     public int getReservationId() {
@@ -58,12 +59,12 @@ public class Reservation {
         this.amountOfGuests = amountOfGuests;
     }
 
-    public TableEntity getTable() {
-        return table;
+    public int getTableId() {
+        return tableId;
     }
 
-    public void setTable(TableEntity table) {
-        this.table = table;
+    public void setTableId(int tableId) {
+        this.tableId = tableId;
     }
 
     public boolean isOver() {

@@ -9,7 +9,7 @@
       <p> Kapacitás: {{ table.capacity }}</p>
       <p *ngIf="!table.isTaken"> Státusz: szabad</p>
       <p *ngIf="table.isTaken"> Státusz: foglalt</p>
-      <button (click)="routeToTableReservations(table.id)">Foglalás</button>
+      <button (click)="routeToTableReservations(table.tableId)">Foglalás</button>
     </div>
   </div>
 </div>

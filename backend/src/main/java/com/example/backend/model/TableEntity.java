@@ -11,7 +11,7 @@ public class TableEntity {
     private int tableId;
     private int capacity;
     private boolean isTaken = false;
-    @OneToMany(mappedBy = "table", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tableId", cascade = CascadeType.MERGE)
     private List<Reservation> reservationList;
 
     public int getTableId() {
