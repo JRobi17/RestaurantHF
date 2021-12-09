@@ -28,7 +28,6 @@ import {BsModalService} from "ngx-bootstrap/modal";
 import {PositioningService} from "ngx-bootstrap/positioning";
 import {ComponentLoaderFactory} from "ngx-bootstrap/component-loader";
 import {NgxStarRatingModule} from 'ngx-star-rating';
-import {ClosedOrdersComponent} from './closed-orders/closed-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -47,7 +46,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CreateNewEmployeeComponent,
     HomeComponent,
     OrderTypeComponent,
-    ClosedOrdersComponent
   ],
   imports: [
     BrowserModule,

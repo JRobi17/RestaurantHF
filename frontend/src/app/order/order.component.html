@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div>
+<div *ngIf="!orderView">
   <br><br>
   <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/ordertype"> Új rendelés hozzáadása</button>
-  <button id="button2" type="button" class="btn btn-outline-primary" routerLink="/closedorders"> Lezárt rendelések megtekintése</button>
+  <button id="button2" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Lezárt rendelések megtekintése</button>
   <br><br>
   <br><br>
   <table class="table table-striped">
@@ -51,5 +51,29 @@
     </tr>
     </tbody>
   </table>
+</div>
 
+<div *ngIf="orderView">
+  <br><br>
+  <button id="button3" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Folyamatban lévő rendelések megtekintése</button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> Azonosító </th>
+      <th> Fizetés módja </th>
+      <th> Végösszeg </th>
+      <th> Rendelés módja </th>
+      <th> Értékelés </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of closedOrders" >
+      <td> {{ order.orderId }}</td>
+      <td> {{ order.paymentMethod }} </td>
+      <td> {{ order.grandTotal }} </td>
+      <td> {{ order.orderType }}</td>
+      <td> {{ order.rating }}/5</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
