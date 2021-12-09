@@ -13,10 +13,12 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class OrderComponent implements OnInit {
 
   orders!: OrderEntity[]
+  closedOrders!: OrderEntity[]
   order: OrderEntity = new OrderEntity()
   modalRef!: BsModalRef;
   public form: FormGroup;
   rating!: number;
+  orderView!: boolean;
 
   constructor(private orderService: OrderService, private router: Router, private modalService: BsModalService, private fb: FormBuilder) {
     this.rating = 0;
@@ -31,6 +33,9 @@ export class OrderComponent implements OnInit {
   private getOrders() {
     this.orderService.getAllOngoingOrders().subscribe(data => {
       this.orders = data;
+    })
+    this.orderService.getClosedOrders().subscribe(data => {
+      this.closedOrders = data;
     })
   }
 
@@ -54,6 +59,10 @@ export class OrderComponent implements OnInit {
 
   decline(): void {
     this.modalRef.hide();
+  }
+
+  pageSwap() {
+    this.orderView = !this.orderView
   }
 
 }
