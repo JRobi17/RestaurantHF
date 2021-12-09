@@ -27,7 +27,6 @@ import {BsModalService} from "ngx-bootstrap/modal";
 import {PositioningService} from "ngx-bootstrap/positioning";
 import {ComponentLoaderFactory} from "ngx-bootstrap/component-loader";
 import {NgxStarRatingModule} from 'ngx-star-rating';
-import {ClosedOrdersComponent} from './closed-orders/closed-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateNewReservationComponent } from './create-new-reservation/create-new-reservation.component';
 
@@ -46,7 +45,6 @@ import { CreateNewReservationComponent } from './create-new-reservation/create-n
     CreateNewEmployeeComponent,
     HomeComponent,
     OrderTypeComponent,
-    ClosedOrdersComponent,
     CreateNewReservationComponent
   ],
   imports: [
