@@ -18,6 +18,10 @@ export class ReservationComponent implements OnInit {
   constructor(private reservationService: ReservationService) { }
 
   ngOnInit(): void {
+    this.getReservations()
+  }
+
+  private getReservations() {
     this.reservationService.getOpenReservations().subscribe(data =>
       this.openReservationList = data)
     this.reservationService.getClosedReservations().subscribe(data =>
@@ -31,5 +35,11 @@ export class ReservationComponent implements OnInit {
 
   pageSwap() {
     this.reservationView = !this.reservationView
+  }
+
+  closeReservation(reservationId: number) {
+    this.reservationService.closeReservation(reservationId).subscribe( () => {
+      this.getReservations();
+    })
   }
 }

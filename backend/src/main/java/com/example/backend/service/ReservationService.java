@@ -30,7 +30,7 @@ public class ReservationService {
         List<TableEntity> tables = tableDao.findAll();
         for (TableEntity t : tables) {
             if (t.getTableId() == reservation.getTableId()) {
-                t.setTaken(true);
+                t.setStatus("Foglalt");
                 t.getReservationList().add(reservation);
                 newReservation.setTableId(reservation.getTableId());
             }
@@ -75,7 +75,7 @@ public class ReservationService {
         List<Reservation> allReservations = getAllReservations();
         List<Reservation> openReservations = new ArrayList<>();
         for (Reservation r : allReservations) {
-            if (!r.isOver()) {
+            if (r.getStatus().equals("Folyamatban")) {
                 openReservations.add(r);
             }
         }
@@ -86,10 +86,27 @@ public class ReservationService {
         List<Reservation> allReservations = getAllReservations();
         List<Reservation> closedReservations = new ArrayList<>();
         for (Reservation r : allReservations) {
-            if (r.isOver()) {
+            if (r.getStatus().equals("Lezárt")) {
                 closedReservations.add(r);
             }
         }
         return closedReservations;
+    }
+
+    public void closeReservation(int id) {
+        List<Reservation> allReservations = getAllReservations();
+        for (Reservation r : allReservations) {
+            if (r.getReservationId() == id) {
+                List<TableEntity> tables = tableDao.findAll();
+                for (TableEntity t : tables) {
+                    if (t.getTableId() == r.getTableId()) {
+                        t.setStatus("Szabad");
+                        t.getReservationList().remove(r);
+                    }
+                }
+                r.setStatus("Lezárt");
+                reservationDao.save(r);
+            }
+        }
     }
 }
