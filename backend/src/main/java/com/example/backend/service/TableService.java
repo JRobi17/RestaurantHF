@@ -15,6 +15,7 @@ public class TableService {
 
     public void initTable() {
 
+        /*
         TableEntity table1 = new TableEntity();
         table1.setCapacity(2);
         tableDao.save(table1);
@@ -46,6 +47,7 @@ public class TableService {
         TableEntity table8 = new TableEntity();
         table8.setCapacity(8);
         tableDao.save(table8);
+         */
 
     }
 

@@ -20,7 +20,6 @@ export class TableComponent implements OnInit {
       this.tables = data);
     this.tableService.getNumberOfAvailableTables().subscribe(data =>
       this.numberOfFreeTables = data);
-
   }
 
   routeToTableReservations(id: number) {

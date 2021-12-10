@@ -22,7 +22,6 @@ import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSelectModule} from "@angular/material/select";
 import {HomeComponent} from './home/home.component';
-import {OrderTypeComponent} from './order-type/order-type.component';
 import {BsModalService} from "ngx-bootstrap/modal";
 import {PositioningService} from "ngx-bootstrap/positioning";
 import {ComponentLoaderFactory} from "ngx-bootstrap/component-loader";
@@ -44,7 +43,6 @@ import { CreateNewReservationComponent } from './create-new-reservation/create-n
     InplaceComponent,
     CreateNewEmployeeComponent,
     HomeComponent,
-    OrderTypeComponent,
     CreateNewReservationComponent
   ],
   imports: [

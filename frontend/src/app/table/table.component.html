@@ -9,6 +9,7 @@
       <p> Kapacitás: {{ table.capacity }}</p>
       <p> {{ table.status }}</p>
       <button *ngIf="table.status == 'Szabad'" (click)="routeToTableReservations(table.tableId)">Foglalás</button>
+      <button *ngIf="table.status == 'Foglalt'">Rendelés hozzáadása</button>
     </div>
   </div>
 </div>

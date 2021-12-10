@@ -1,8 +1,6 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <div *ngIf="!orderView">
   <br><br>
-  <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/ordertype"> Új rendelés hozzáadása</button>
+  <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/delivery"> Házhozszállítás </button>
   <button id="button2" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Lezárt rendelések megtekintése</button>
   <br><br>
   <br><br>
@@ -55,6 +53,7 @@
 
 <div *ngIf="orderView">
   <br><br>
+  <button id="button4" type="button" class="btn btn-outline-primary" routerLink="/delivery"> Házhozszállítás </button>
   <button id="button3" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Folyamatban lévő rendelések megtekintése</button>
   <table class="table table-striped">
     <thead>
