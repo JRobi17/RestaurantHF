@@ -10,7 +10,7 @@ public class TableEntity {
     @GeneratedValue
     private int tableId;
     private int capacity;
-    private boolean isTaken = false;
+    private String status = "Szabad";
     @OneToMany(mappedBy = "tableId", cascade = CascadeType.MERGE)
     private List<Reservation> reservationList;
 
@@ -30,12 +30,12 @@ public class TableEntity {
         this.capacity = capacity;
     }
 
-    public boolean isTaken() {
-        return isTaken;
+    public String getStatus() {
+        return status;
     }
 
-    public void setTaken(boolean taken) {
-        isTaken = taken;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<Reservation> getReservationList() {

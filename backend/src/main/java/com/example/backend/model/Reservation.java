@@ -17,7 +17,7 @@ public class Reservation {
     private AddressEntity guest;
     private int amountOfGuests;
     private int tableId;
-    private boolean isOver = false;
+    private String status = "Folyamatban";
 
     public int getReservationId() {
         return reservationId;
@@ -67,11 +67,11 @@ public class Reservation {
         this.tableId = tableId;
     }
 
-    public boolean isOver() {
-        return isOver;
+    public String getStatus() {
+        return status;
     }
 
-    public void setOver(boolean over) {
-        isOver = over;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

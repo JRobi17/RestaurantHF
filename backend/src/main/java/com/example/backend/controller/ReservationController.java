@@ -20,6 +20,9 @@ public class ReservationController {
         this.reservationService.makeAReservation(reservation);
     }
 
+    @PutMapping("/reservation/closeReservation/{id}")
+    public void closeReservation(@PathVariable int id) { this.reservationService.closeReservation(id); }
+
     @GetMapping("/reservation/getOpenReservations")
     public List<Reservation> getOpenReservations() { return this.reservationService.getOpenReservations(); }
 

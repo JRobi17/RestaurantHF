@@ -17,12 +17,13 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableService.getAllTables().subscribe(data =>
-      this.tables = data)
+      this.tables = data);
     this.tableService.getNumberOfAvailableTables().subscribe(data =>
       this.numberOfFreeTables = data);
+
   }
 
   routeToTableReservations(id: number) {
-    this.router.navigate(["/reservation/" + id]);
+    this.router.navigate(["/createnewreservation/" + id]);
   }
 }

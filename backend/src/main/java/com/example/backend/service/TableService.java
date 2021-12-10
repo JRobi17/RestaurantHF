@@ -14,7 +14,7 @@ public class TableService {
     private TableDao tableDao;
 
     public void initTable() {
-        /*
+
         TableEntity table1 = new TableEntity();
         table1.setCapacity(2);
         tableDao.save(table1);
@@ -46,7 +46,7 @@ public class TableService {
         TableEntity table8 = new TableEntity();
         table8.setCapacity(8);
         tableDao.save(table8);
-         */
+
     }
 
     public List<TableEntity> getAllTables() {
@@ -57,7 +57,7 @@ public class TableService {
         List<TableEntity> tables = getAllTables();
         int counter = 0;
         for (TableEntity t : tables)
-            if (!t.isTaken())
+            if (t.getStatus().equals("Szabad"))
                 counter++;
         return String.valueOf(counter);
     }

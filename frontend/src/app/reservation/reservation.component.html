@@ -22,13 +22,10 @@
         <td> {{ formatDate(reservation.reservationStart)  }} </td>
         <td> {{ formatDate(reservation.reservationEnd) }}  </td>
         <td> {{ reservation.guest.customerName }}</td>
-        <div *ngIf="!reservation.isOver">
-          <td> Folyamatban </td>
-        </div>
-        <div *ngIf="reservation.isOver">
-          <td> Befejeződött </td>
-        </div>
-        <td> {{ reservation.isOver }}</td>
+        <td> {{ reservation.status }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-success" (click)="closeReservation(reservation.reservationId)" style="margin-left: 10px">Close</button>
+        </td>
 
     </tr>
     </tbody>
@@ -56,13 +53,7 @@
       <td> {{ formatDate(reservation.reservationStart)  }} </td>
       <td> {{ formatDate(reservation.reservationEnd) }}  </td>
       <td> {{ reservation.guest.customerName }}</td>
-      <div *ngIf="!reservation.isOver">
-        <td> Folyamatban </td>
-      </div>
-      <div *ngIf="reservation.isOver">
-        <td> Befejeződött </td>
-      </div>
-      <td> {{ reservation.isOver }}</td>
+      <td> {{ reservation.status }}</td>
 
     </tr>
     </tbody>

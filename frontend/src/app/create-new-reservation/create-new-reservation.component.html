@@ -1,22 +1,30 @@
 <div *ngIf="!guestView" class="col-md-9 offset-md-2">
-  <form (ngSubmit)="onSubmit()">
+  <form>
     <label>
       Asztal azonosítója
     </label>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" *ngIf="!tableChosen">
       <mat-select [(ngModel)]="selectedTable" name="role">
         <mat-option *ngFor="let table of tables" [value]="table.tableId">
           {{table.tableId}}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <h2 *ngIf="tableChosen"> {{ selectedTable }}</h2>
 
     <div class="form-group">
       <label>
         Foglalás kezdete
       </label>
-      <label for="date"></label><input type="datetime-local" class="form-control" id="date"
-                                           [(ngModel)]="reservation.reservationStart" name="date">
+      <button (click)="reservation.reservationStart = currentTime()"> Most </button>
+      <div [hidden]="buttonClicked">
+        <label  for="date"></label><input type="datetime-local" class="form-control" id="date"
+                                                                  [(ngModel)]="reservation.reservationStart" name="date">
+      </div>
+      <div [hidden]="!buttonClicked">
+        <h3> {{ formattedDate }}</h3>
+      </div>
+
     </div>
 
     <div class="form-group">

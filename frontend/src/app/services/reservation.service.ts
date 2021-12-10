@@ -19,6 +19,10 @@ export class ReservationService {
     return this.httpclient.post(this.PATH_OF_API + "/reservation/makeAReservation", reservation, {responseType: 'text'})
   }
 
+  public closeReservation(reservationId: number) {
+    return this.httpclient.put(this.PATH_OF_API + '/reservation/closeReservation/' + reservationId,  {responseType: 'text'})
+  }
+
   public getOpenReservations() : Observable<Reservation[]> {
     return this.httpclient.get<Reservation[]>(this.PATH_OF_API + "/reservation/getOpenReservations")
   }

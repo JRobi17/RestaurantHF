@@ -4,12 +4,11 @@
 <h2> Elérhető asztalok száma: {{numberOfFreeTables}}</h2>
 <div class="card-group  offset-md-1 col-md-10">
   <div class="card" *ngFor="let table of tables; let i = index">
-    <div class="card-body" [ngStyle]="{'background-color': table.isTaken? 'red' : '#00ff00'}">
+    <div class="card-body" [ngStyle]="{'background-color': table.status=='Szabad'? 'green' : 'red'}">
       <h5 class="card-title">{{i + 1}}. asztal</h5>
       <p> Kapacitás: {{ table.capacity }}</p>
-      <p *ngIf="!table.isTaken"> Státusz: szabad</p>
-      <p *ngIf="table.isTaken"> Státusz: foglalt</p>
-      <button (click)="routeToTableReservations(table.tableId)">Foglalás</button>
+      <p> {{ table.status }}</p>
+      <button *ngIf="table.status == 'Szabad'" (click)="routeToTableReservations(table.tableId)">Foglalás</button>
     </div>
   </div>
 </div>
