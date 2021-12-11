@@ -12,6 +12,7 @@ import {CreateNewEmployeeComponent} from "./create-new-employee/create-new-emplo
 import {InplaceComponent} from "./inplace/inplace.component";
 import {HomeComponent} from "./home/home.component";
 import {CreateNewReservationComponent} from "./create-new-reservation/create-new-reservation.component";
+import {AddNewOrderComponent} from "./add-new-order/add-new-order.component";
 
 const routes: Routes = [
   { path: '', redirectTo: "login", pathMatch: 'full'},
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'inplace', component: InplaceComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'Host', 'Cook', 'Waiter']}},
   { path: 'createnewemployee', component: CreateNewEmployeeComponent, canActivate:[AuthGuard], data:{roles:['Admin']}},
   { path: 'createnewreservation', component: CreateNewReservationComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'Host', 'Cook', 'Waiter']}},
-  { path: 'createnewreservation/:id', component: CreateNewReservationComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'Host', 'Cook', 'Waiter']}}
+  { path: 'createnewreservation/:id', component: CreateNewReservationComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'Host', 'Cook', 'Waiter']}},
+  { path: 'addneworder/:id', component: AddNewOrderComponent, canActivate:[AuthGuard], data:{roles:['Admin', 'Host', 'Cook', 'Waiter']}}
 ];
 
 @NgModule({

@@ -7,7 +7,6 @@ import java.util.List;
 public class TableEntity {
 
     @Id
-    @GeneratedValue
     private int tableId;
     private int capacity;
     private String status = "Szabad";

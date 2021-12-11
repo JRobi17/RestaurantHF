@@ -3,8 +3,8 @@
     <h2>Szép napot, kedves kolléga!</h2>
     <h2>A mai dátum: {{ today }} </h2>
     <div *ngIf="userService.roleMatch('Admin')">
-      <h2>A mai napi bevétel: {{grandTotal}} Forint</h2>
-      <h2>A mai napi értékelések átlaga: {{rateAvg}}</h2>
+      <h2>Bevétel: {{grandTotal}} Forint</h2>
+      <h2>A kapott értékelések átlaga: {{rateAvg}}</h2>
     </div>
     <h2>Kellemes munkát kívánunk! </h2>
     <img src="{{ restaurantPicPath }}" alt="thumbnail" class="center"

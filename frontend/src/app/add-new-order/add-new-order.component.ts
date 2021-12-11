@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {OrderService} from "../services/order.service";
 import {OrderEntity} from "../classes/orderentity";
-import {FoodService} from "../services/food.service";
 import {Food} from "../classes/food";
-import {FoodType} from "../classes/foodType";
 import {PaymentMethod} from "../classes/paymentMethod";
-import {Router} from "@angular/router";
+import {FoodType} from "../classes/foodType";
+import {OrderService} from "../services/order.service";
+import {FoodService} from "../services/food.service";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Address} from "../classes/address";
 import {OrderType} from "../classes/orderType";
 
 @Component({
-  selector: 'app-delivery',
-  templateUrl: './delivery.component.html',
-  styleUrls: ['./delivery.component.css']
+  selector: 'app-add-new-order',
+  templateUrl: './add-new-order.component.html',
+  styleUrls: ['./add-new-order.component.css']
 })
-export class DeliveryComponent implements OnInit {
+export class AddNewOrderComponent implements OnInit {
 
   order: OrderEntity = new OrderEntity()
   foods!: Food[]
@@ -31,12 +31,12 @@ export class DeliveryComponent implements OnInit {
   allPaymentMethod: typeof PaymentMethod = PaymentMethod;
 
   price: number = 0
-  addressView: boolean = false
-
   error: string = ""
 
-  constructor(private orderService: OrderService, private foodService: FoodService, private router: Router) {
-    this.order.orderType = OrderType.Delivery
+  currId!: string
+
+  constructor(private orderService: OrderService, private foodService: FoodService, private router: Router, private route: ActivatedRoute) {
+    this.order.orderType = OrderType.Inplace
     this.order.rating = 0;
     this.order.address = new Address()
     this.order.foodList = this.selectedFoods
@@ -45,6 +45,10 @@ export class DeliveryComponent implements OnInit {
   ngOnInit(): void {
     this.foodService.getAllFoods().subscribe(data =>
       this.foods = data)
+    this.orderService.getCurrAddress(this.route.snapshot.paramMap.get('id')).subscribe(data =>
+      this.order.address = data)
+    this.orderService.getCurrTableId(this.route.snapshot.paramMap.get('id')).subscribe( data =>
+       this.currId = data)
   }
 
   addToMenu(food: Food) {
@@ -60,25 +64,13 @@ export class DeliveryComponent implements OnInit {
     this.price -= food.price
   }
 
-  pageSwap() {
-    if (this.order.foodList.length == 0) {
-      this.error = "Legalább egy tételt hozzá kell adni a kosárhoz."
-    } else {
-      this.error = ""
-      this.addressView = !this.addressView
-    }
-  }
-
   onSubmit() {
     this.order.foodList = this.selectedFoods
     this.order.grandTotal = this.price
     this.order.paymentMethod = this.selectedPaymentMethod
-    if (!this.order.address.customerName || !this.order.address.street || !this.order.address.zipCode || !this.order.address.phoneNumber || !this.order.address.city || !this.order.paymentMethod) {
-      this.error = "Minden adat kitöltése kötelező!"
-    } else {
-      this.orderService.addNewOrder(this.order).subscribe(() =>
-        this.router.navigate(['/order'])
-      )
-    }
+    this.order.tableId = this.currId
+    this.orderService.addNewOrder(this.order).subscribe(() => {
+      this.router.navigate(['/order'])
+    })
   }
 }

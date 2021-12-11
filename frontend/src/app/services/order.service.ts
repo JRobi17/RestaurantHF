@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {OrderEntity} from "../classes/orderentity";
+import {Address} from "../classes/address";
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +34,13 @@ export class OrderService {
 
   public addNewOrder(order: OrderEntity) {
     return this.httpclient.post(this.PATH_OF_API + "/addNewOrder", order, {responseType: 'text'})
+  }
+
+  getCurrAddress(reservationId: string | null): Observable<Address> {
+    return this.httpclient.get<Address>(this.PATH_OF_API + "/orders/getCurrAddress/" + reservationId)
+  }
+
+  getCurrTableId(reservationId: string | null) {
+    return this.httpclient.get(this.PATH_OF_API + "/orders/getCurrTableId/" + reservationId, {responseType: 'text'})
   }
 }

@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.dao.OrderDao;
+import com.example.backend.dao.ReservationDao;
 import com.example.backend.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class OrderService {
 
     @Autowired
     private RestaurantService restaurantService;
+
+    @Autowired
+    private ReservationDao reservationDao;
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
@@ -74,6 +78,7 @@ public class OrderService {
         newOrder.setRating(order.getRating());
         newOrder.setGrandTotal(order.getGrandTotal());
         newOrder.setPaymentMethod(order.getPaymentMethod());
+        newOrder.setTableId(order.getTableId());
         AddressEntity address = new AddressEntity();
         address.setCustomerName(order.getAddress().getCustomerName());
         address.setCity(order.getAddress().getCity());
@@ -96,5 +101,25 @@ public class OrderService {
             totalRatings += o.getRating();
         }
         return String.valueOf(df.format(totalRatings / counter));
+    }
+
+    public AddressEntity getCurrAddress(String reservationId) {
+        List<Reservation> reservationList = reservationDao.findAll();
+        for (Reservation r : reservationList) {
+            if (r.getReservationId() == Integer.parseInt(reservationId)) {
+                return r.getGuest();
+            }
+        }
+        return null;
+    }
+
+    public String getCurrTableId(String reservationId) {
+        List<Reservation> reservationList = reservationDao.findAll();
+        for (Reservation r : reservationList) {
+            if (r.getReservationId() == Integer.parseInt(reservationId)) {
+                return String.valueOf(r.getTableId());
+            }
+        }
+        return "0";
     }
 }

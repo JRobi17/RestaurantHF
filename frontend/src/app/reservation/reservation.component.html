@@ -25,6 +25,7 @@
         <td> {{ reservation.status }}</td>
         <td>
           <button type="button" class="btn btn-outline-success" (click)="closeReservation(reservation.reservationId)" style="margin-left: 10px">Close</button>
+          <button *ngIf="reservation.isCurrent == ''" type="button" class="btn btn-outline-info" (click)="theyArrived(reservation.reservationId)" style="margin-left: 10px">They arrived</button>
         </td>
 
     </tr>

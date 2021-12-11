@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div *ngIf="!orderView">
   <br><br>
   <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/delivery"> Házhozszállítás </button>
@@ -18,9 +20,9 @@
       <td> {{ order.orderId }}</td>
       <td> {{ order.paymentMethod }} </td>
       <td> {{ order.grandTotal }} </td>
-      <td> {{ order.orderType }}</td>
+      <td *ngIf="order.orderType === allOrderTypes.Inplace"> {{order.orderType}} ({{ order.tableId }}. asztal) </td>
+      <td *ngIf="order.orderType === allOrderTypes.Delivery"> {{ order.orderType }} </td>
       <td>
-        <button type="button" class="btn btn-outline-danger" (click)="deleteOrder(order.orderId)" style="margin-left: 10px">Delete</button>
         <button type="button" class="btn btn-outline-success" (click)="openModal(template)" style="margin-left: 10px">Close</button>
         <button type="button" class="btn btn-outline-info" [disabled]="order.grandTotal == 1590" (click)="openModal(address)" style="margin-left: 10px">Info</button>
 

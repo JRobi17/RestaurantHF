@@ -23,4 +23,8 @@ export class TableService {
   getNumberOfAvailableTables() {
     return this.httpclient.get(this.PATH_OF_API + '/table/getNumberOfAvailableTables', {responseType: "text"})
   }
+
+  getCurrReservationForTable(id: number) {
+    return this.httpclient.get(this.PATH_OF_API + '/table/getCurrReservationForTable/' + id, {responseType: "text"})
+  }
 }

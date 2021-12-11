@@ -25,4 +25,10 @@ export class TableComponent implements OnInit {
   routeToTableReservations(id: number) {
     this.router.navigate(["/createnewreservation/" + id]);
   }
+
+  routeToAddNewOrder(id: number) {
+    this.tableService.getCurrReservationForTable(id).subscribe(data =>
+      this.router.navigate(["/addneworder/" + data]));
+
+  }
 }

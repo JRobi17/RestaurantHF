@@ -14,6 +14,7 @@ public class OrderEntity {
     private OrderType orderType;
     private boolean isClosed = false;
     private int rating;
+    private String tableId;
     @OneToOne(cascade = CascadeType.ALL)
     private AddressEntity address;
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -86,5 +87,13 @@ public class OrderEntity {
 
     public void setAddress(AddressEntity address) {
         this.address = address;
+    }
+
+    public String getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(String tableId) {
+        this.tableId = tableId;
     }
 }

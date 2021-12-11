@@ -42,4 +42,10 @@ export class ReservationComponent implements OnInit {
       this.getReservations();
     })
   }
+
+  theyArrived(reservationId: number) {
+    this.reservationService.theyArrived(reservationId).subscribe( () => {
+      this.getReservations();
+    })
+  }
 }

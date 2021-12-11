@@ -28,6 +28,7 @@ import {ComponentLoaderFactory} from "ngx-bootstrap/component-loader";
 import {NgxStarRatingModule} from 'ngx-star-rating';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateNewReservationComponent } from './create-new-reservation/create-new-reservation.component';
+import { AddNewOrderComponent } from './add-new-order/add-new-order.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CreateNewReservationComponent } from './create-new-reservation/create-n
     InplaceComponent,
     CreateNewEmployeeComponent,
     HomeComponent,
-    CreateNewReservationComponent
+    CreateNewReservationComponent,
+    AddNewOrderComponent
   ],
   imports: [
     BrowserModule,

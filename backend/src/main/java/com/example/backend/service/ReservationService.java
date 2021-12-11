@@ -110,9 +110,27 @@ public class ReservationService {
 
                     }
                 }
+                r.setIsCurrent(r.getStatus());
                 r.setStatus("Lezárt");
                 reservationDao.save(r);
             }
         }
+    }
+
+    public void theyArrived(int id) {
+        List<Reservation> allReservations = getAllReservations();
+        for (Reservation r : allReservations) {
+            if (r.getReservationId() == id) {
+                List<TableEntity> tables = tableDao.findAll();
+                for (TableEntity t : tables) {
+                    if (t.getTableId() == r.getTableId()) {
+                        t.setStatus("Foglalt");
+                        r.setIsCurrent("Current");
+                        reservationDao.save(r);
+                    }
+                }
+            }
+        }
+
     }
 }
