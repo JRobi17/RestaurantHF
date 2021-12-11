@@ -38,4 +38,8 @@ export class ReservationService {
   public getReservationsForTable(tableId: string): Observable<Reservation[]> {
     return this.httpclient.get<Reservation[]>(this.PATH_OF_API + "/reservation/" + tableId)
   }
+
+  public checkIfResIsValid(reservation: Reservation): Observable<boolean> {
+    return this.httpclient.post<boolean>(this.PATH_OF_API + "/reservation/checkIfValid", reservation)
+  }
 }

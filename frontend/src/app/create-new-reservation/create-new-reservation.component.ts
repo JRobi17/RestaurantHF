@@ -22,6 +22,7 @@ export class CreateNewReservationComponent implements OnInit {
   error: string = ""
   guestView: boolean = false
   formattedDate!: string | null
+  isResValid!: boolean
 
   constructor(private reservationService: ReservationService, private tableService: TableService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe( () =>
@@ -43,15 +44,22 @@ export class CreateNewReservationComponent implements OnInit {
 
   onSubmit() {
     this.reservation.tableId = this.selectedTable
+
     if (this.buttonClicked) {
       this.reservation.isCurrent = "Current"
     }
     if (!this.reservation.guest.customerName || !this.reservation.guest.street || !this.reservation.guest.zipCode || !this.reservation.guest.phoneNumber || !this.reservation.guest.city) {
       this.error = "Minden adat kitöltése kötelező!"
     } else {
-      this.reservationService.makeAReservation(this.reservation).subscribe(() =>
-        this.router.navigate(['/reservation'])
-      )
+      this.reservationService.checkIfResIsValid(this.reservation).subscribe(data => {
+        if (data) {
+          this.reservationService.makeAReservation(this.reservation).subscribe(() =>
+            this.router.navigate(['/reservation'])
+          )
+        } else {
+          this.error = "Ebben az időpontban ez az asztal már foglalt."
+        }
+      })
     }
   }
 
@@ -66,7 +74,7 @@ export class CreateNewReservationComponent implements OnInit {
   }
 
   formatDate(date: Date): string | null {
-    const datePipe: DatePipe = new DatePipe('en-US')
+    const datePipe: DatePipe = new DatePipe('hu-HUN')
     return datePipe.transform(date, 'YYYY-MMM-dd | HH:mm:ss')
   }
 

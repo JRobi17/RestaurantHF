@@ -32,6 +32,8 @@ public class ReservationService {
         for (TableEntity t : tables) {
             if (t.getTableId() == reservation.getTableId()) {
                 if (reservation.getIsCurrent().equals("Current")) {
+                    newReservation.setReservationStart(newReservation.getReservationStart().plusHours(1));
+                    newReservation.setReservationEnd(newReservation.getReservationEnd().plusHours(1));
                     t.setStatus("Foglalt");
                 }
                 t.getReservationList().add(reservation);
@@ -125,5 +127,23 @@ public class ReservationService {
             }
         }
 
+    }
+
+    public boolean checkIfResIsValid(Reservation reservation) {
+        List<Reservation> reservationListForTable = getReservationsForTable(String.valueOf(reservation.getTableId()));
+        if (reservationListForTable.isEmpty()) {
+            return true;
+        }
+        for (Reservation r : reservationListForTable) {
+            if (r.getTableId() == reservation.getTableId()) {
+                if (reservation.getReservationStart().isAfter(r.getReservationStart()) && reservation.getReservationStart().isBefore(r.getReservationEnd())) {
+                    return false;
+                }
+                if (reservation.getReservationStart().plusHours(1).isAfter(r.getReservationStart()) && reservation.getReservationStart().plusHours(1).isBefore(r.getReservationEnd())) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

@@ -47,7 +47,12 @@ export class OrderComponent implements OnInit {
       this.modalRef.hide();
       this.getOrders();
     })
+  }
 
+  deleteOrder(id: number) {
+    this.orderService.deleteOrder(id).subscribe(() => {
+      this.getOrders();
+    })
   }
 
   openModal(template: TemplateRef<any>) {

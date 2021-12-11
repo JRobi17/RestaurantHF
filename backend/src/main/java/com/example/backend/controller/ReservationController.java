@@ -34,4 +34,7 @@ public class ReservationController {
 
     @GetMapping("/reservation/{tableId}")
     public List<Reservation> getReservationForTable(@PathVariable String tableId) { return this.reservationService.getReservationsForTable(tableId); }
+
+    @PostMapping("/reservation/checkIfValid")
+    public boolean checkIfResIsValid(@RequestBody Reservation reservation) { return this.reservationService.checkIfResIsValid(reservation); }
 }

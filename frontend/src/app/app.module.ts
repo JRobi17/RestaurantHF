@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -29,6 +29,10 @@ import {NgxStarRatingModule} from 'ngx-star-rating';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateNewReservationComponent } from './create-new-reservation/create-new-reservation.component';
 import { AddNewOrderComponent } from './add-new-order/add-new-order.component';
+import { registerLocaleData } from '@angular/common';
+import localeHu from '@angular/common/locales/hu';
+import {Locale} from "ngx-bootstrap/chronos/locale/locale.class";
+registerLocaleData(localeHu);
 
 @NgModule({
   declarations: [
@@ -71,7 +75,10 @@ import { AddNewOrderComponent } from './add-new-order/add-new-order.component';
     UserService,
     BsModalService,
     ComponentLoaderFactory,
-    PositioningService
+    PositioningService,
+    {
+      provide: LOCALE_ID, useValue: 'hu:HUN'
+    }
   ],
   bootstrap: [AppComponent]
 })
