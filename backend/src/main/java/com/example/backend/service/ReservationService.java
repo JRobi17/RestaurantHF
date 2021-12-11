@@ -26,11 +26,14 @@ public class ReservationService {
         newReservation.setReservationStart(reservation.getReservationStart());
         newReservation.setReservationEnd(reservation.getReservationStart().plusHours(1));
         newReservation.setAmountOfGuests(reservation.getAmountOfGuests());
+        newReservation.setIsCurrent(reservation.getIsCurrent());
 
         List<TableEntity> tables = tableDao.findAll();
         for (TableEntity t : tables) {
             if (t.getTableId() == reservation.getTableId()) {
-                t.setStatus("Foglalt");
+                if (reservation.getIsCurrent().equals("Current")) {
+                    t.setStatus("Foglalt");
+                }
                 t.getReservationList().add(reservation);
                 newReservation.setTableId(reservation.getTableId());
             }
@@ -100,8 +103,11 @@ public class ReservationService {
                 List<TableEntity> tables = tableDao.findAll();
                 for (TableEntity t : tables) {
                     if (t.getTableId() == r.getTableId()) {
-                        t.setStatus("Szabad");
+                        if (r.getIsCurrent().equals("Current")) {
+                            t.setStatus("Szabad");
+                        }
                         t.getReservationList().remove(r);
+
                     }
                 }
                 r.setStatus("Lezárt");

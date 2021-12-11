@@ -43,6 +43,9 @@ export class CreateNewReservationComponent implements OnInit {
 
   onSubmit() {
     this.reservation.tableId = this.selectedTable
+    if (this.buttonClicked) {
+      this.reservation.isCurrent = "Current"
+    }
     if (!this.reservation.guest.customerName || !this.reservation.guest.street || !this.reservation.guest.zipCode || !this.reservation.guest.phoneNumber || !this.reservation.guest.city) {
       this.error = "Minden adat kitöltése kötelező!"
     } else {

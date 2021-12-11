@@ -1,5 +1,4 @@
 import {Address} from "./address";
-import {Table} from "./table";
 import {Time} from "@angular/common";
 
 export class Reservation {
@@ -11,4 +10,5 @@ export class Reservation {
   guest!: Address
   amountOfGuests!: number
   tableId!: number
+  isCurrent: string = ""
 }
