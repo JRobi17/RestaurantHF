@@ -22,11 +22,18 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void registerNewUser(User user) {
+    public String registerNewUser(User user) {
+        Iterable<User> users = getAllUsers();
+        for (User u : users) {
+            if (u.getUserName().equals(user.getUserName())) {
+                return "Már létezik felhasználó ezzel a felhasználónévvel";
+            }
+        }
         Role role = roleDao.findById(user.getRole().getRoleName()).get();
         user.setRole(role);
         user.setUserPassword(getEncodedPassword(user.getUserPassword()));
         userDao.save(user);
+        return "Sikeres regisztráció";
     }
 
     public void initRoleAndUser() {

@@ -22,25 +22,14 @@ public class UserController {
     }
 
     @PostMapping({"/registerNewUser"})
-    @PreAuthorize("hasRole('Admin')")
-    public String registerNewUser(@RequestBody User user) {
-        Iterable<User> users = getAllUsers();
-        for (User u : users)
-            if (u.getUserName().equals(user.getUserName()))
-                return "Már létezik felhasználó ezzel a felhasználónévvel";
-        userService.registerNewUser(user);
-        return "Sikeres regisztráció";
-    }
+    public String registerNewUser(@RequestBody User user) { return userService.registerNewUser(user); }
 
     @GetMapping({"/getAllUsers"})
-    @PreAuthorize("hasRole('Admin')")
     public List<User> getAllUsers() { return userService.getAllUsers(); }
 
     @GetMapping({"/getAllRoles"})
-    @PreAuthorize("hasRole('Admin')")
     public List<Role> getAllRoles() { return userService.getAllRoles(); }
 
     @DeleteMapping("{userName}")
-    @PreAuthorize("hasRole('Admin')")
     public void deleteUser(@PathVariable String userName) { userService.deleteUser(userName); }
 }
