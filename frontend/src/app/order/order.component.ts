@@ -16,17 +16,13 @@ export class OrderComponent implements OnInit {
 
   orders!: OrderEntity[]
   closedOrders!: OrderEntity[]
-  order: OrderEntity = new OrderEntity()
   modalRef!: BsModalRef;
-  public form: FormGroup;
   rating!: number;
   orderView!: boolean;
   allOrderTypes: typeof OrderType = OrderType
 
-  constructor(private orderService: OrderService, private router: Router, private modalService: BsModalService, private fb: FormBuilder, private route: ActivatedRoute) {
+  constructor(private orderService: OrderService, private router: Router, private modalService: BsModalService) {
     this.rating = 0;
-    this.form = this.fb.group({
-    })
   }
 
   ngOnInit(): void {
@@ -66,5 +62,4 @@ export class OrderComponent implements OnInit {
   pageSwap() {
     this.orderView = !this.orderView
   }
-
 }

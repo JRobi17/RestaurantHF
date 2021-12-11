@@ -69,9 +69,11 @@ public class TableService {
     public String getNumberOfAvailableTables() {
         List<TableEntity> tables = getAllTables();
         int counter = 0;
-        for (TableEntity t : tables)
-            if (t.getStatus().equals("Szabad"))
+        for (TableEntity t : tables) {
+            if (t.getStatus().equals("Szabad")) {
                 counter++;
+            }
+        }
         return String.valueOf(counter);
     }
 

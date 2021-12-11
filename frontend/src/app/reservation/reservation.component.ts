@@ -45,7 +45,7 @@ export class ReservationComponent implements OnInit {
   }
 
   formatDate(date: Date): string | null {
-    const datePipe: DatePipe = new DatePipe('en-US')
+    const datePipe: DatePipe = new DatePipe('hu-HUN')
     return datePipe.transform(date, 'YYYY-MMM-dd | HH:mm:ss')
   }
 

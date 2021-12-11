@@ -82,11 +82,12 @@ public class UserService {
 
     public void deleteUser(String userName) {
         List<User> users = getAllUsers();
-        for (User u : users)
+        for (User u : users) {
             if (u.getUserName().equals(userName)) {
                 Role role = u.getRole();
                 userDao.delete(u);
                 roleDao.save(role);
             }
+        }
     }
 }

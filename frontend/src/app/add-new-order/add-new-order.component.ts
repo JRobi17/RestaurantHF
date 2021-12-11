@@ -18,7 +18,6 @@ export class AddNewOrderComponent implements OnInit {
 
   order: OrderEntity = new OrderEntity()
   foods!: Food[]
-  food: Food = new Food()
 
   selectedFoods: Food[] = []
   selectedAppetizer!: Food

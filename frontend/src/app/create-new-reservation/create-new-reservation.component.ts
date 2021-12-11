@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ReservationService} from "../services/reservation.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Reservation} from "../classes/reservation";
 import {TableService} from "../services/table.service";
+import {DatePipe} from "@angular/common";
+import {Reservation} from "../classes/reservation";
 import {Table} from "../classes/table";
 import {Address} from "../classes/address";
-import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-create-new-reservation',

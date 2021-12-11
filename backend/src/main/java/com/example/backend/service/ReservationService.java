@@ -5,7 +5,6 @@ import com.example.backend.dao.TableDao;
 import com.example.backend.model.AddressEntity;
 import com.example.backend.model.Reservation;
 import com.example.backend.model.TableEntity;
-import javafx.scene.control.Tab;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

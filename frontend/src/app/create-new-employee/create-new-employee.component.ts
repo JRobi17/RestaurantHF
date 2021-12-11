@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../classes/user";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 import {Role} from "../classes/role";
+import {User} from "../classes/user";
 
 @Component({
   selector: 'app-create-new-employee',
@@ -17,8 +17,7 @@ export class CreateNewEmployeeComponent implements OnInit {
   roles!: Role[]
   error: string = ""
 
-  constructor(private userService: UserService, private router: Router) {
-  }
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.getAllRoles().subscribe(data => {

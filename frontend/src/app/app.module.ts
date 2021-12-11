@@ -16,7 +16,6 @@ import {EmployeeComponent} from './employee/employee.component';
 import {ReservationComponent} from './reservation/reservation.component';
 import {TableComponent} from './table/table.component';
 import {DeliveryComponent} from './delivery/delivery.component';
-import {InplaceComponent} from './inplace/inplace.component';
 import {CreateNewEmployeeComponent} from './create-new-employee/create-new-employee.component';
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -31,7 +30,6 @@ import { CreateNewReservationComponent } from './create-new-reservation/create-n
 import { AddNewOrderComponent } from './add-new-order/add-new-order.component';
 import { registerLocaleData } from '@angular/common';
 import localeHu from '@angular/common/locales/hu';
-import {Locale} from "ngx-bootstrap/chronos/locale/locale.class";
 registerLocaleData(localeHu);
 
 @NgModule({
@@ -45,7 +43,6 @@ registerLocaleData(localeHu);
     ReservationComponent,
     TableComponent,
     DeliveryComponent,
-    InplaceComponent,
     CreateNewEmployeeComponent,
     HomeComponent,
     CreateNewReservationComponent,
