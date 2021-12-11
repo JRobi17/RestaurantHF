@@ -33,5 +33,5 @@ public class ReservationController {
     public List<Reservation> getClosedReservations() { return this.reservationService.getClosedReservations(); }
 
     @GetMapping("/reservation/{tableId}")
-    public List<Reservation> getReservationForTable(@PathVariable int tableId) { return this.reservationService.getReservationsForTable(tableId); }
+    public List<Reservation> getReservationForTable(@PathVariable String tableId) { return this.reservationService.getReservationsForTable(tableId); }
 }

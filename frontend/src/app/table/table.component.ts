@@ -31,4 +31,8 @@ export class TableComponent implements OnInit {
       this.router.navigate(["/addneworder/" + data]));
 
   }
+
+  routeToReservationHistory(tableId: number) {
+    this.router.navigate(["/reservation/" + tableId])
+  }
 }

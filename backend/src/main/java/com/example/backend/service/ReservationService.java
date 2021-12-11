@@ -54,19 +54,12 @@ public class ReservationService {
         return this.reservationDao.findAll();
     }
 
-    public List<Reservation> getReservationsForTable(int tableId) {
-        List<TableEntity> tableEntityList = this.tableDao.findAll();
-        TableEntity searchedTable = null;
-        for (TableEntity t : tableEntityList) {
-            if (t.getTableId() == tableId) {
-                searchedTable = t;
-            }
-        }
+    public List<Reservation> getReservationsForTable(String tableId) {
         List<Reservation> reservationList = getAllReservations();
         List<Reservation> tableReservations = new ArrayList<>();
-        if (reservationList != null && reservationList.size() != 0 && searchedTable != null) {
+        if (reservationList != null && reservationList.size() != 0) {
             for (Reservation r : reservationList) {
-                if (r.getTableId() == searchedTable.getTableId()) {
+                if (r.getTableId() == Integer.parseInt(tableId)) {
                     tableReservations.add(r);
                 }
             }

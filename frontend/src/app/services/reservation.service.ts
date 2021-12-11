@@ -35,7 +35,7 @@ export class ReservationService {
     return this.httpclient.get<Reservation[]>(this.PATH_OF_API + "/reservation/getClosedReservations")
   }
 
-  public getReservationForTable(tableId: number): Observable<Reservation[]> {
+  public getReservationsForTable(tableId: string): Observable<Reservation[]> {
     return this.httpclient.get<Reservation[]>(this.PATH_OF_API + "/reservation/" + tableId)
   }
 }
