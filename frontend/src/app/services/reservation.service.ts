@@ -42,4 +42,8 @@ export class ReservationService {
   public checkIfResIsValid(reservation: Reservation): Observable<boolean> {
     return this.httpclient.post<boolean>(this.PATH_OF_API + "/reservation/checkIfValid", reservation)
   }
+
+  checkIfCapacityIsRight(tableId: number, amountOfGuests: number): Observable<boolean>{
+    return this.httpclient.get<boolean>(this.PATH_OF_API + "/reservation/checkIfCapacityIsRight/" + tableId + "/" + amountOfGuests)
+  }
 }

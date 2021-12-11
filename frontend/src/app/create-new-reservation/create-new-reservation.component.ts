@@ -51,19 +51,27 @@ export class CreateNewReservationComponent implements OnInit {
     if (!this.reservation.guest.customerName || !this.reservation.guest.street || !this.reservation.guest.zipCode || !this.reservation.guest.phoneNumber || !this.reservation.guest.city) {
       this.error = "Minden adat kitöltése kötelező!"
     } else {
-      this.reservationService.checkIfResIsValid(this.reservation).subscribe(data => {
-        if (data) {
-          this.reservationService.makeAReservation(this.reservation).subscribe(() =>
-            this.router.navigate(['/reservation'])
-          )
+      this.reservationService.checkIfCapacityIsRight(this.reservation.tableId, this.reservation.amountOfGuests).subscribe(data => {
+        if (!data) {
+          this.error = "Ennyi vendéget ez az asztal nem tud fogadni."
         } else {
-          this.error = "Ebben az időpontban ez az asztal már foglalt."
+          this.reservationService.checkIfResIsValid(this.reservation).subscribe(data => {
+            if (data) {
+              this.reservationService.makeAReservation(this.reservation).subscribe(() =>
+                this.router.navigate(['/reservation'])
+              )
+            } else {
+              this.buttonClicked = false;
+              this.error = "Ebben az időpontban ez az asztal már foglalt."
+            }
+          })
         }
       })
     }
   }
 
   pageSwap() {
+    this.error = ""
     this.guestView = !this.guestView
   }
 

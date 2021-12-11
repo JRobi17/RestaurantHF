@@ -5,6 +5,7 @@ import com.example.backend.dao.TableDao;
 import com.example.backend.model.AddressEntity;
 import com.example.backend.model.Reservation;
 import com.example.backend.model.TableEntity;
+import javafx.scene.control.Tab;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -134,12 +135,30 @@ public class ReservationService {
         if (reservationListForTable.isEmpty()) {
             return true;
         }
+        List<Reservation> openReservationListForTable = new ArrayList<>();
         for (Reservation r : reservationListForTable) {
+            if (r.getIsCurrent().equals("Current")) {
+                openReservationListForTable.add(r);
+            }
+        }
+        for (Reservation r : openReservationListForTable) {
             if (r.getTableId() == reservation.getTableId()) {
                 if (reservation.getReservationStart().isAfter(r.getReservationStart()) && reservation.getReservationStart().isBefore(r.getReservationEnd())) {
                     return false;
                 }
                 if (reservation.getReservationStart().plusHours(1).isAfter(r.getReservationStart()) && reservation.getReservationStart().plusHours(1).isBefore(r.getReservationEnd())) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean checkIfCapacityIsRight(String tableId, String amountOfGuests) {
+        List<TableEntity> tableEntityList = tableDao.findAll();
+        for (TableEntity t : tableEntityList) {
+            if (t.getTableId() == Integer.parseInt(tableId)) {
+                if (t.getCapacity() < Integer.parseInt(amountOfGuests)) {
                     return false;
                 }
             }

@@ -37,4 +37,9 @@ public class ReservationController {
 
     @PostMapping("/reservation/checkIfValid")
     public boolean checkIfResIsValid(@RequestBody Reservation reservation) { return this.reservationService.checkIfResIsValid(reservation); }
+
+    @GetMapping("/reservation/checkIfCapacityIsRight/{tableId}/{amountOfGuests}")
+    public boolean checkIfCapacityIsRight(@PathVariable String tableId, @PathVariable String amountOfGuests) {
+        return this.reservationService.checkIfCapacityIsRight(tableId, amountOfGuests);
+    }
 }
