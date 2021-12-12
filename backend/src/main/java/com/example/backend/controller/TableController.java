@@ -24,9 +24,6 @@ public class TableController {
     @GetMapping("/table/getAll")
     public List<TableEntity> getAllTables() { return tableService.getAllTables(); }
 
-    @GetMapping("/table/getNumberOfAvailableTables")
-    public String getNumberOfAvailableTables() { return tableService.getNumberOfAvailableTables(); }
-
     @GetMapping("/table/getCurrReservationForTable/{tableId}")
     public String getCurrReservationForTable(@PathVariable String tableId) { return tableService.getCurrReservationForTable(tableId); }
 }

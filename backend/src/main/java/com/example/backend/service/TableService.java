@@ -66,17 +66,6 @@ public class TableService {
         return tableDao.findAll();
     }
 
-    public String getNumberOfAvailableTables() {
-        List<TableEntity> tables = getAllTables();
-        int counter = 0;
-        for (TableEntity t : tables) {
-            if (t.getStatus().equals("Szabad")) {
-                counter++;
-            }
-        }
-        return String.valueOf(counter);
-    }
-
     public String getCurrReservationForTable(String tableId) {
         List<Reservation> allReservations = reservationDao.findAll();
         for (Reservation r : allReservations) {

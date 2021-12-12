@@ -24,16 +24,6 @@ public class OrderService {
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
-    public void initOrder() {
-        /*
-        OrderEntity order1 = new OrderEntity();
-        order1.setPaymentMethod(PaymentMethod.CARD);
-        order1.setGrandTotal(10000);
-        order1.setOrderType(OrderType.DELIVERY);
-        orderDao.save(order1);
-         */
-    }
-
     public List<OrderEntity> getAllOngoingOrders() {
         List<OrderEntity> orders = orderDao.findAll();
         List<OrderEntity> onGoingOrders = new ArrayList<>();

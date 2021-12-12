@@ -15,11 +15,6 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostConstruct
-    public void initOrder() {
-        orderService.initOrder();
-    }
-
     @GetMapping("/getAllOngoingOrders")
     public List<OrderEntity> getAllOngoingOrders() { return orderService.getAllOngoingOrders(); }
 
