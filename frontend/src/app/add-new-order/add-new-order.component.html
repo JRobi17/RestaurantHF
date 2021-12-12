@@ -29,7 +29,7 @@
       </ng-container>
     </mat-select>
   </mat-form-field>
-  <button (click)="addToMenu(selectedAppetizer)"> Add </button>
+  <button class="btn btn-light btn-outline-dark" (click)="addToMenu(selectedAppetizer)"> Add </button>
   <br><br>
   <label>
     Főétel
@@ -43,7 +43,7 @@
       </ng-container>
     </mat-select>
   </mat-form-field>
-  <button (click)="addToMenu(selectedMainCourse)"> Add </button>
+  <button class="btn btn-light btn-outline-dark" (click)="addToMenu(selectedMainCourse)"> Add </button>
   <br><br>
   <label>
     Desszert
@@ -57,7 +57,7 @@
       </ng-container>
     </mat-select>
   </mat-form-field>
-  <button (click)="addToMenu(selectedDessert)"> Add </button>
+  <button class="btn btn-light btn-outline-dark" (click)="addToMenu(selectedDessert)"> Add </button>
   <br><br>
   <label>
     Ital
@@ -71,7 +71,7 @@
       </ng-container>
     </mat-select>
   </mat-form-field>
-  <button (click)="addToMenu(selectedDrink)"> Add </button>
+  <button class="btn btn-light btn-outline-dark" (click)="addToMenu(selectedDrink)"> Add </button>
   <br><br>
   <h3>Végösszeg: {{ price }} Forint</h3>
   <label>
@@ -83,7 +83,8 @@
       <mat-option [value]="allPaymentMethod.Cash"> {{ allPaymentMethod.Cash }} </mat-option>
     </mat-select>
   </mat-form-field>
-  <button (click)="onSubmit()" class="btn btn-info" type="submit">
+  <br><br>
+  <button (click)="onSubmit()" class="btn btn-light btn-outline-dark" type="submit">
     Rendelés leadása
   </button>
   <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>

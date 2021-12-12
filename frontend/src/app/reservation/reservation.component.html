@@ -2,30 +2,30 @@
 
 <div *ngIf="reservationView === reservationViewTypes.OpenReservations">
   <br><br>
-  <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/createnewreservation"> Új foglalás hozzáadása</button>
-  <button id="button2" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Lezárt foglalások megtekintése</button>
+  <button id="button1" type="button" class="btn btn-light btn-outline-dark button1" routerLink="/createnewreservation"> Új foglalás hozzáadása</button>
+  <button id="button2" type="button" class="btn btn-light btn-outline-dark button2" (click)="pageSwap()"> Lezárt foglalások megtekintése</button>
   <br><br>
   <br><br>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th> Asztal azonosítója </th>
-      <th> Foglalás kezdete </th>
-      <th> Foglalás vége </th>
-      <th> Vendég neve </th>
-      <th> Státusz </th>
+      <th class="text-center"> Asztal azonosítója </th>
+      <th class="text-center"> Foglalás kezdete </th>
+      <th class="text-center"> Foglalás vége </th>
+      <th class="text-center"> Vendég neve </th>
+      <th class="text-center"> Státusz </th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let reservation of openReservationList">
-        <td> {{ reservation.tableId }}</td>
-        <td> {{ formatDate(reservation.reservationStart)  }} </td>
-        <td> {{ formatDate(reservation.reservationEnd) }}  </td>
-        <td> {{ reservation.guest.customerName }}</td>
-        <td> {{ reservation.status }}</td>
+        <td class="text-center"> {{ reservation.tableId }}</td>
+        <td class="text-center"> {{ formatDate(reservation.reservationStart)  }} </td>
+        <td class="text-center"> {{ formatDate(reservation.reservationEnd) }}  </td>
+        <td class="text-center"> {{ reservation.guest.customerName }}</td>
+        <td class="text-center"> {{ reservation.status }}</td>
         <td>
-          <button type="button" class="btn btn-outline-success" (click)="closeReservation(reservation.reservationId)" style="margin-left: 10px">Close</button>
-          <button *ngIf="reservation.isCurrent == ''" type="button" class="btn btn-outline-info" (click)="theyArrived(reservation.reservationId)" style="margin-left: 10px">They arrived</button>
+          <button type="button" class="btn btn-light btn-outline-dark btn-sm" (click)="closeReservation(reservation.reservationId)" style="margin-left: 10px">Lezárás</button>
+          <button *ngIf="reservation.isCurrent == ''" type="button" class="btn btn-light btn-outline-dark btn-sm" (click)="theyArrived(reservation.reservationId)" style="margin-left: 10px">Érkezés</button>
         </td>
 
     </tr>
@@ -35,26 +35,27 @@
 
 <div *ngIf="reservationView === reservationViewTypes.ClosedReservations">
   <br><br>
-  <button id="button4" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Folyamatban lévő foglalások megtekintése</button>
+  <button id="button3" type="button" class="btn btn-light btn-outline-dark button1" routerLink="/createnewreservation"> Új foglalás hozzáadása</button>
+  <button id="button4" type="button" class="btn btn-light btn-outline-dark button2" (click)="pageSwap()"> Futó foglalások megtekintése</button>
   <br><br>
   <br><br>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th> Asztal azonosítója </th>
-      <th> Foglalás kezdete </th>
-      <th> Foglalás vége </th>
-      <th> Vendég neve </th>
-      <th> Státusz </th>
+      <th class="text-center"> Asztal azonosítója </th>
+      <th class="text-center"> Foglalás kezdete </th>
+      <th class="text-center"> Foglalás vége </th>
+      <th class="text-center"> Vendég neve </th>
+      <th class="text-center"> Státusz </th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let reservation of closedReservationList">
-      <td> {{ reservation.tableId }}</td>
-      <td> {{ formatDate(reservation.reservationStart)  }} </td>
-      <td> {{ formatDate(reservation.reservationEnd) }}  </td>
-      <td> {{ reservation.guest.customerName }}</td>
-      <td> {{ reservation.status }}</td>
+      <td class="text-center"> {{ reservation.tableId }}</td>
+      <td class="text-center"> {{ formatDate(reservation.reservationStart)  }} </td>
+      <td class="text-center"> {{ formatDate(reservation.reservationEnd) }}  </td>
+      <td class="text-center"> {{ reservation.guest.customerName }}</td>
+      <td class="text-center"> {{ reservation.status }}</td>
     </tr>
     </tbody>
   </table>
@@ -65,23 +66,23 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th> Asztal azonosítója </th>
-      <th> Foglalás kezdete </th>
-      <th> Foglalás vége </th>
-      <th> Vendég neve </th>
-      <th> Státusz </th>
+      <th class="text-center"> Asztal azonosítója </th>
+      <th class="text-center"> Foglalás kezdete </th>
+      <th class="text-center"> Foglalás vége </th>
+      <th class="text-center"> Vendég neve </th>
+      <th class="text-center"> Státusz </th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let reservation of reservationHistory">
-      <td> {{ reservation.tableId }}</td>
-      <td> {{ formatDate(reservation.reservationStart)  }} </td>
-      <td> {{ formatDate(reservation.reservationEnd) }}  </td>
-      <td> {{ reservation.guest.customerName }}</td>
-      <td> {{ reservation.status }}</td>
+      <td class="text-center"> {{ reservation.tableId }}</td>
+      <td class="text-center"> {{ formatDate(reservation.reservationStart)  }} </td>
+      <td class="text-center"> {{ formatDate(reservation.reservationEnd) }}  </td>
+      <td class="text-center"> {{ reservation.guest.customerName }}</td>
+      <td class="text-center"> {{ reservation.status }}</td>
       <td>
-        <button *ngIf="reservation.status == 'Folyamatban'" type="button" class="btn btn-outline-success" (click)="closeReservation(reservation.reservationId)" style="margin-left: 10px">Close</button>
-        <button *ngIf="reservation.isCurrent == ''" type="button" class="btn btn-outline-info" (click)="theyArrived(reservation.reservationId)" style="margin-left: 10px">They arrived</button>
+        <button *ngIf="reservation.status == 'Folyamatban'" type="button" class="btn btn-light btn-outline-dark btn-sm" (click)="closeReservation(reservation.reservationId)">Lezárás</button>
+        <button *ngIf="reservation.isCurrent == ''" type="button" class="btn btn-light btn-outline-dark btn-sm" (click)="theyArrived(reservation.reservationId)">Érkezés</button>
       </td>
     </tr>
     </tbody>

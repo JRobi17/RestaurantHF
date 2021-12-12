@@ -1,13 +1,13 @@
 <br><br>
-<div class="card-group  offset-md-1 col-md-10">
-  <div class="card" *ngFor="let table of tables">
-    <div class="card-body" [ngStyle]="{'background-color': table.status=='Szabad'? 'green' : 'red'}">
-      <h5 class="card-title">{{table.tableId}}. asztal</h5>
-      <p> Kapacitás: {{ table.capacity }}</p>
-      <p> {{ table.status }}</p>
-      <button *ngIf="table.status == 'Szabad'" (click)="routeToTableReservations(table.tableId)">Foglalás</button>
-      <button *ngIf="table.status == 'Foglalt'" (click)="routeToAddNewOrder(table.tableId)">Új rendelés</button>
-      <button (click)="routeToReservationHistory(table.tableId)"> Előzmények </button>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="card text-dark bg-light mb-3 " *ngFor="let table of tables">
+    <div class="card-body mx-auto">
+      <h5 class="card-title text-center">{{table.tableId}}. asztal</h5>
+      <p [ngClass]="{'circle2': table.status==='Szabad', 'circle' : table.status=='Foglalt' }"></p>
+      <p class="text-center"> Kapacitás: {{ table.capacity }}</p>
+      <button type="button" class="btn btn-light btn-outline-dark btn-space" *ngIf="table.status == 'Szabad'" (click)="routeToTableReservations(table.tableId)">Foglalás</button>
+      <button type="button" class="btn btn-light btn-outline-dark btn-space" *ngIf="table.status == 'Foglalt'" (click)="routeToAddNewOrder(table.tableId)">Új rendelés</button>
+      <button type="button" class="btn btn-light btn-outline-dark btn-space" (click)="routeToReservationHistory(table.tableId)"> Előzmények </button>
     </div>
   </div>
 </div>

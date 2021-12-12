@@ -11,7 +11,7 @@
       <td> {{ food.name }}</td>
       <td> {{ food.price }} </td>
       <td>
-        <button type="button" class="btn btn-outline-danger" (click)="deleteFromMenu(food)" style="margin-left: 10px">Delete</button>
+        <button type="button" class="btn btn-light btn-outline-dark" (click)="deleteFromMenu(food)" style="margin-left: 10px">Törlés</button>
       </td>
     </tr>
     </tbody>
@@ -29,7 +29,7 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
-    <button (click)="addToMenu(selectedAppetizer)"> Add </button>
+    <button class="btn btn-light btn-outline-dark" (click)="addToMenu(selectedAppetizer)"> Add </button>
     <br><br>
     <label>
       Főétel
@@ -43,7 +43,7 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
-    <button (click)="addToMenu(selectedMainCourse)"> Add </button>
+    <button class="btn btn-light btn-outline-dark" (click)="addToMenu(selectedMainCourse)"> Add </button>
     <br><br>
     <label>
       Desszert
@@ -57,7 +57,7 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
-    <button (click)="addToMenu(selectedDessert)"> Add </button>
+    <button class="btn btn-light btn-outline-dark" (click)="addToMenu(selectedDessert)"> Add </button>
     <br><br>
     <label>
       Ital
@@ -71,11 +71,11 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
-    <button (click)="addToMenu(selectedDrink)"> Add </button>
+    <button class="btn btn-light btn-outline-dark" (click)="addToMenu(selectedDrink)"> Add </button>
     <br><br>
   <h3>Végösszeg: {{ price }} Forint</h3>
   <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
-  <button (click)="pageSwap()" class="btn btn-info" type="submit">
+  <button class="btn btn-light btn-outline-dark" (click)="pageSwap()" type="submit">
     Tovább
   </button>
 </div>
@@ -128,10 +128,10 @@
   </mat-form-field>
   <br><br>
   <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
-  <button (click)="onSubmit()" class="btn btn-info" type="submit">
+  <button class="btn btn-light btn-outline-dark btn-space" (click)="onSubmit()" type="submit">
     Rendelés leadása
   </button>
-  <button (click)="pageSwap()" class="btn btn-info" type="submit">
+  <button class="btn btn-light btn-outline-dark btn-space" (click)="pageSwap()" type="submit">
     Tétel módosítás
   </button>
 </div>

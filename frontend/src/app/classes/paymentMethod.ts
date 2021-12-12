@@ -1,4 +1,4 @@
 export enum PaymentMethod {
-  Card = 'CARD',
-  Cash = 'CASH'
+  Card = 'Bankkártya',
+  Cash = 'Készpénz'
 }

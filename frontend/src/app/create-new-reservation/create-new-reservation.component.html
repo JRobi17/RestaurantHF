@@ -1,50 +1,56 @@
-<div *ngIf="!guestView" class="col-md-9 offset-md-2">
-  <form>
-    <label>
-      Asztal azonosítója
-    </label>
-    <mat-form-field appearance="fill" *ngIf="!tableChosen">
-      <mat-select [(ngModel)]="selectedTable" name="role">
-        <mat-option *ngFor="let table of tables" [value]="table.tableId">
-          {{table.tableId}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <h2 *ngIf="tableChosen"> {{ selectedTable }}</h2>
-
-    <div class="form-group">
-      <label>
-        Foglalás kezdete
+<div *ngIf="!guestView" class="container" >
+  <br><br>
+  <div class="row">
+    <div class="col-md-5 form-group text-center">
+      <label class="text-center">
+        Asztal azonosítója
       </label>
-      <button (click)="reservation.reservationStart = currentTime()"> Most </button>
-      <div [hidden]="buttonClicked">
-        <label  for="date"></label><input type="datetime-local" class="form-control" id="date"
-                                                                  [(ngModel)]="reservation.reservationStart" name="date">
-      </div>
-      <div [hidden]="!buttonClicked">
-        <h3> {{ formattedDate }}</h3>
-      </div>
+      <br><br>
+      <mat-form-field appearance="fill" *ngIf="!tableChosen" class="text-center">
+        <mat-select [(ngModel)]="selectedTable" name="role">
+          <mat-option *ngFor="let table of tables" [value]="table.tableId">
+            {{table.tableId}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <h2 *ngIf="tableChosen"> {{ selectedTable }}</h2>
 
+      <div class="form-group text-center">
+        <label>
+          Foglalás kezdete
+        </label>
+        <br><br>
+        <button class="btn btn-light btn-outline-dark" (click)="reservation.reservationStart = currentTime()"> Most</button>
+        <br><br>
+        <div [hidden]="buttonClicked">
+          <label for="date"></label><input type="datetime-local" class="form-control text-center" id="date"
+                                           [(ngModel)]="reservation.reservationStart" name="date">
+        </div>
+        <div [hidden]="!buttonClicked">
+          <h3> {{ formattedDate }}</h3>
+        </div>
+      </div>
+      <br><br>
+      <div class="form-group text-center">
+        <label>
+          Vendégek száma
+        </label>
+        <label for="amountOfGuests"></label><input type="text" class="form-control" id="amountOfGuests"
+                                                   [(ngModel)]="reservation.amountOfGuests" name="amountOfGuests">
+      </div>
+      <br><br>
+      <button (click)="pageSwap()" class="btn btn-light btn-outline-dark btn-space" type="submit">
+        Tovább
+      </button>
+      <br><br>
+      <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
     </div>
-
-    <div class="form-group">
-      <label>
-        Vendégek száma
-      </label>
-      <label for="amountOfGuests"></label><input type="text" class="form-control" id="amountOfGuests"
-                                                [(ngModel)]="reservation.amountOfGuests" name="amountOfGuests" >
-    </div>
-    <br><br>
-    <button (click)="pageSwap()" class="btn btn-info" type="submit">
-      Tovább
-    </button>
-    <br><br>
-    <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
-  </form>
+  </div>
 </div>
 
 <div *ngIf="guestView" class="col-md-9 offset-md-2">
-  <h2>Szállítási adatok</h2>
+  <br><br>
+  <h2 class="text-center">Szállítási adatok</h2>
   <div class="form-group">
     <label>
       Vásárló neve
@@ -57,7 +63,7 @@
       Város
     </label>
     <label for="city"></label><input type="text" class="form-control" id="city"
-                                     [(ngModel)]="reservation.guest.city" name="city" >
+                                     [(ngModel)]="reservation.guest.city" name="city">
   </div>
   <div class="form-group">
     <label>
@@ -71,21 +77,23 @@
       Utca, házszám
     </label>
     <label for="street"></label><input type="text" class="form-control" id="street"
-                                       [(ngModel)]="reservation.guest.street" name="street"  required="required">
+                                       [(ngModel)]="reservation.guest.street" name="street" required="required">
   </div>
   <div class="form-group">
     <label>
       Telefonszám
     </label>
     <label for="phoneNumber"></label><input type="text" class="form-control" id="phoneNumber"
-                                            [(ngModel)]="reservation.guest.phoneNumber" name="phoneNumber"  required="required">
+                                            [(ngModel)]="reservation.guest.phoneNumber" name="phoneNumber"
+                                            required="required">
   </div>
   <br><br>
   <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
-  <button (click)="onSubmit()" class="btn btn-info" type="submit">
+  <button class="btn btn-light btn-outline-dark btn-space" (click)="onSubmit()"type="submit">
     Rendelés leadása
   </button>
-  <button (click)="pageSwap()" class="btn btn-info" type="submit">
+  <button class="btn btn-light btn-outline-dark btn-space" (click)="pageSwap()"  type="submit">
     Visszalépés
   </button>
 </div>
+
