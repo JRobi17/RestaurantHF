@@ -1,3 +1,71 @@
 .btn-space {
   margin-right: 10px;
 }
+
+form {
+  width:250px;
+}
+
+.form2 {
+  margin: 0 auto;
+  width:250px;
+}
+
+mat-form-field {
+  font-size: 10px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  text-align: center;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  transform: translate(40%, -25%);
+}
+
+.center2 {
+  margin: 0;
+  position: absolute;
+  transform: translate(33%, 120%);
+}
+
+.center3 {
+  margin: 0;
+  position: absolute;
+  transform: translate(15%, 480%);
+}
+
+.center4 {
+  margin: 0;
+  position: absolute;
+  transform: translate(60%, -6%);
+}
+
+.center5 {
+  margin: 0;
+  position: absolute;
+  transform: translate(33%, -60%);
+}
+
+.center6 {
+  margin: 0;
+  position: absolute;
+  transform: translate(100%, -70%);
+}
+
+.center7 {
+  margin: 0;
+  position: absolute;
+  transform: translate(110%, 70%);
+}
+
+.center8 {
+  margin: 0;
+  position: absolute;
+  transform: translate(00%, 400%);
+}
+

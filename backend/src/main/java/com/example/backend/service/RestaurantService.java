@@ -12,10 +12,9 @@ public class RestaurantService {
     private RestaurantDao restaurantDao;
 
     public void initRestaurant() {
-        /*
+
         Restaurant restaurant = new Restaurant();
         restaurantDao.save(restaurant);
-         */
     }
 
     public void addToGrandTotal(int price) {

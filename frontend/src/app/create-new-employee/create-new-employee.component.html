@@ -1,50 +1,30 @@
-<div class="col-md-9 offset-md-2">
-  <form (ngSubmit)="onSubmit()">
-
-    <div class="form-group">
-      <label>
-        Felhasználónév
-      </label>
+<div class="container mt-2">
+  <div class="card border-0" style="padding: 20px;">
+    <form>
       <label for="userName"></label><input type="text" class="form-control" id="userName"
-                                       [(ngModel)]="user.userName" name="userName">
-    </div>
-    <div class="form-group">
-      <label>
-        Keresztnév
-      </label>
+                                           [(ngModel)]="user.userName" name="userName" placeholder="Felhasználónév"><br>
       <label for="userFirstName"></label><input type="text" class="form-control" id="userFirstName"
-                                       [(ngModel)]="user.userFirstName" name="userFirstName" >
-    </div>
-    <div class="form-group">
-      <label>
-        Vezetéknév
-      </label>
+                                                [(ngModel)]="user.userFirstName" name="userFirstName" placeholder="Keresztnév"><br>
       <label for="userLastName"></label><input type="text" class="form-control" id="userLastName"
-                                         [(ngModel)]="user.userLastName" name="userLastName" required="required">
-    </div>
-    <div class="form-group">
-      <label>
-        Jelszó
-      </label>
+                                               [(ngModel)]="user.userLastName" name="userLastName" required="required" placeholder="Vezetéknév"><br>
       <label for="userPassword"></label><input type="password" class="form-control" id="userPassword"
-                                               [(ngModel)]="user.userPassword" name="userPassword"  required="required">
-    </div>
+                                               [(ngModel)]="user.userPassword" name="userPassword"  required="required" placeholder="Jelszó"><br>
       <label>
         Jogosultsági szint
       </label>
-    <br><br>
-    <mat-form-field appearance="fill">
-      <mat-select [(ngModel)]="selectedValue" name="role">
-        <mat-option *ngFor="let role of roles" [value]="role.roleName">
-          {{role.roleName}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br><br>
-    <button class="btn btn-light btn-outline-dark" type="submit">
-      Regisztráció
-    </button>
-    <br><br>
-    <div class="alert-danger" style="" *ngIf="error != ''"> {{error}}</div>
-  </form>
+      <mat-form-field appearance="fill" class="text-center">
+        <mat-select [(ngModel)]="selectedValue" name="role">
+          <mat-option *ngFor="let role of roles" [value]="role.roleName">
+            {{role.roleName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <button class="btn btn-light btn-outline-dark center2" type="submit" (click)="onSubmit()">
+        Regisztráció
+      </button>
+      <br>
+      <p class="alert-danger center" style="" *ngIf="error != ''"> {{error}}</p>
+    </form>
+  </div>
 </div>

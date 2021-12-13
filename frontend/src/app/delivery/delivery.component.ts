@@ -26,6 +26,7 @@ export class DeliveryComponent implements OnInit {
   selectedDessert!: Food
   selectedDrink!: Food
   selectedPaymentMethod!: PaymentMethod
+  none: Food = new Food()
 
   allFoodTypes: typeof FoodType = FoodType
   allPaymentMethod: typeof PaymentMethod = PaymentMethod;
@@ -47,9 +48,24 @@ export class DeliveryComponent implements OnInit {
       this.foods = data)
   }
 
-  addToMenu(food: Food) {
-    this.selectedFoods.push(food)
-    this.price += food.price
+  addToMenu(food: Food, food2: Food, food3: Food, food4: Food) {
+    if (food) {
+      this.selectedFoods.push(food)
+      this.price += food.price
+    }
+    if (food2) {
+      this.selectedFoods.push(food2)
+      this.price += food2.price
+    }
+    if (food3) {
+      this.selectedFoods.push(food3)
+      this.price += food3.price
+    }
+    if (food4) {
+      this.selectedFoods.push(food4)
+      this.price += food4.price
+    }
+
   }
 
   deleteFromMenu(food: Food) {
@@ -58,6 +74,9 @@ export class DeliveryComponent implements OnInit {
         this.selectedFoods.splice(index, 1)
     })
     this.price -= food.price
+    if (this.price < 0) {
+      this.price = 0;
+    }
   }
 
   pageSwap() {

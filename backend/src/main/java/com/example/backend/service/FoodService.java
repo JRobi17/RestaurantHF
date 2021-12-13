@@ -2,6 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.dao.FoodDao;
 import com.example.backend.model.Food;
+import com.example.backend.model.FoodType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,6 @@ public class FoodService {
 
     public void initFood() {
 
-        /*
         Food food1 = new Food();
         food1.setName("Marhagulyás");
         food1.setFoodType(FoodType.APPETIZER);
@@ -87,7 +87,6 @@ public class FoodService {
         food12.setFoodType(FoodType.DRINK);
         food12.setPrice(250);
         foodDao.save(food12);
-         */
     }
 
     public List<Food> getAllFoods() {

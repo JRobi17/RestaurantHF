@@ -28,7 +28,7 @@ export class CreateNewEmployeeComponent implements OnInit {
   onSubmit() {
     this.role.roleName = this.selectedValue
     this.user.role = this.role
-    if (!this.user.userName || !this.user.userFirstName || !this.user.userLastName || !this.user.role) {
+    if (!this.user.userName || !this.user.userFirstName || !this.user.userLastName || !this.user.role || !this.user.userPassword) {
       this.error = "Minden adat kitöltése kötelező!"
     } else {
       this.userService.registerNewUser(this.user).subscribe(data => {

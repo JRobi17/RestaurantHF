@@ -19,7 +19,7 @@ public class TableService {
     private ReservationDao reservationDao;
 
     public void initTable() {
-        /*
+
         TableEntity table1 = new TableEntity();
         table1.setTableId(1);
         table1.setCapacity(2);
@@ -59,7 +59,6 @@ public class TableService {
         table8.setTableId(8);
         table8.setCapacity(8);
         tableDao.save(table8);
-        */
     }
 
     public List<TableEntity> getAllTables() {

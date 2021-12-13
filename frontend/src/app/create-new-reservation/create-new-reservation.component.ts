@@ -43,7 +43,6 @@ export class CreateNewReservationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.reservation.tableId = this.selectedTable
 
     if (this.buttonClicked) {
       this.reservation.isCurrent = "Current"
@@ -71,8 +70,14 @@ export class CreateNewReservationComponent implements OnInit {
   }
 
   pageSwap() {
-    this.error = ""
-    this.guestView = !this.guestView
+    this.reservation.tableId = this.selectedTable
+    if (!this.reservation.reservationStart || !this.reservation.tableId || !this.reservation.amountOfGuests) {
+      this.error = "Minden adat kitöltése kötelező!"
+    } else {
+      this.error = ""
+      this.guestView = !this.guestView
+    }
+
   }
 
   currentTime(): Date {
