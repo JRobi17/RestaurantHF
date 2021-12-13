@@ -11,24 +11,30 @@ public class RestaurantService {
     @Autowired
     private RestaurantDao restaurantDao;
 
-    private Restaurant restaurant;
-
     public void initRestaurant() {
-        this.restaurant = new Restaurant();
+
+        Restaurant restaurant = new Restaurant();
         restaurantDao.save(restaurant);
     }
 
     public void addToGrandTotal(int price) {
+        Restaurant restaurant = findRestaurant();
         int currPrice = restaurant.getGrandTotal();
-        this.restaurant.setGrandTotal(currPrice + price);
-        restaurantDao.save(this.restaurant);
+        restaurant.setGrandTotal(currPrice + price);
+        restaurantDao.save(restaurant);
     }
 
     public int getGrandTotal() {
-        return this.restaurant.getGrandTotal();
+        Restaurant restaurant = findRestaurant();
+        return restaurant.getGrandTotal();
     }
 
     public String getImagePath() {
-        return this.restaurant.getImagePath();
+        Restaurant restaurant = findRestaurant();
+        return restaurant.getImagePath();
+    }
+
+    public Restaurant findRestaurant() {
+        return restaurantDao.getById("1");
     }
 }

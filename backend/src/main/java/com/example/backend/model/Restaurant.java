@@ -7,15 +7,15 @@ import javax.persistence.Id;
 public class Restaurant {
 
     @Id
-    private int id = 1;
+    private String id = "1";
     private int grandTotal;
     private String imagePath = "https://www.logolynx.com/images/logolynx/ed/ed984f0195019c4355f58f416bc3e120.jpeg";
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

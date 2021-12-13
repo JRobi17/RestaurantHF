@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {User} from "../classes/user";
 import {Table} from "../classes/table";
 
 @Injectable({
@@ -20,7 +19,7 @@ export class TableService {
     return this.httpclient.get<Table[]>(this.PATH_OF_API + '/table/getAll')
   }
 
-  getNumberOfAvailableTables() {
-    return this.httpclient.get(this.PATH_OF_API + '/table/getNumberOfAvailableTables', {responseType: "text"})
+  getCurrReservationForTable(id: number) {
+    return this.httpclient.get(this.PATH_OF_API + '/table/getCurrReservationForTable/' + id, {responseType: "text"})
   }
 }

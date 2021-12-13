@@ -1,0 +1,11 @@
+form {
+  margin: 0 auto;
+  width:250px;
+  height: 100px;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  transform: translate(210%, 900%);
+}

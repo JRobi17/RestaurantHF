@@ -12,4 +12,5 @@ export class OrderEntity {
   rating!: number
   foodList!: Food[]
   address!: Address
+  tableId!: string
 }

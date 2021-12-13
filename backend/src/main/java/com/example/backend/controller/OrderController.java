@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.model.AddressEntity;
 import com.example.backend.model.OrderEntity;
 import com.example.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,6 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
-
-    @PostConstruct
-    public void initOrder() {
-        orderService.initOrder();
-    }
 
     @GetMapping("/getAllOngoingOrders")
     public List<OrderEntity> getAllOngoingOrders() { return orderService.getAllOngoingOrders(); }
@@ -36,4 +32,10 @@ public class OrderController {
 
     @GetMapping("/getAvgRating")
     private String getAvgRating() { return orderService.getAvgRating(); }
+
+    @GetMapping("/orders/getCurrAddress/{reservationId}")
+    private AddressEntity getCurrAddress(@PathVariable String reservationId) { return orderService.getCurrAddress(reservationId); }
+
+    @GetMapping("/orders/getCurrTableId/{reservationId}")
+    private String getCurrTableId(@PathVariable String reservationId) { return orderService.getCurrTableId(reservationId); }
 }

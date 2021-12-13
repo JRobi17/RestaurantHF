@@ -1,9 +1,7 @@
 package com.example.backend.model;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 public class Reservation {
@@ -17,7 +15,8 @@ public class Reservation {
     private AddressEntity guest;
     private int amountOfGuests;
     private int tableId;
-    private boolean isOver = false;
+    private String status = "Folyamatban";
+    private String isCurrent;
 
     public int getReservationId() {
         return reservationId;
@@ -67,11 +66,19 @@ public class Reservation {
         this.tableId = tableId;
     }
 
-    public boolean isOver() {
-        return isOver;
+    public String getStatus() {
+        return status;
     }
 
-    public void setOver(boolean over) {
-        isOver = over;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getIsCurrent() {
+        return isCurrent;
+    }
+
+    public void setIsCurrent(String isCurrent) {
+        this.isCurrent = isCurrent;
     }
 }

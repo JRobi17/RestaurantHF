@@ -3,54 +3,69 @@
 }
 
 form {
+  width:250px;
+}
+
+.form2 {
   margin: 0 auto;
   width:250px;
 }
 
 mat-form-field {
+  font-size: 10px;
   width: 100%;
 }
+
 label {
   display: block;
   text-align: center;
 }
 
-mat-form-field {
-  font-size: 10px;
-}
-
 .center {
   margin: 0;
   position: absolute;
-  left: 47%;
+  transform: translate(40%, -25%);
 }
 
 .center2 {
   margin: 0;
   position: absolute;
-  transform: translate(145%, 20%);
+  transform: translate(33%, 120%);
 }
 
 .center3 {
   margin: 0;
   position: absolute;
-  transform: translate(30%, -10%);
+  transform: translate(15%, 480%);
 }
 
 .center4 {
   margin: 0;
   position: absolute;
-  transform: translate(56%, 125%);
+  transform: translate(60%, -6%);
 }
 
 .center5 {
   margin: 0;
   position: absolute;
-  transform: translate(15%, 500%);
+  transform: translate(10%, -10%);
+}
+
+.center6 {
+  margin: 0;
+  position: absolute;
+  transform: translate(100%, 20%);
 }
 
 .center7 {
   margin: 0;
   position: absolute;
-  transform: translate(20%, 220%);
+  transform: translate(35%, 120%);
 }
+
+.center8 {
+  margin: 0;
+  position: absolute;
+  transform: translate(00%, 500%);
+}
+

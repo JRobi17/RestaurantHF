@@ -1,25 +1,26 @@
-<div>
+<div class="table-responsive">
   <br><br>
-  <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/createnewemployee"> Új alkalmazott hozzáadása</button>
+  <button id="button1" type="button" class="btn btn-light btn-outline-dark" routerLink="/createnewemployee"> Új alkalmazott hozzáadása</button>
+  <br><br>
   <br><br>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th> Felhasználónév </th>
-      <th> Keresztnév </th>
-      <th> Vezetéknév </th>
-      <th> Munkakör </th>
+      <th class="text-center"> Felhasználónév </th>
+      <th class="text-center"> Keresztnév </th>
+      <th class="text-center"> Vezetéknév </th>
+      <th class="text-center"> Munkakör </th>
+      <th class="text-center"></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let user of users" >
-      <td> {{ user.userName }}</td>
-      <td> {{ user.userFirstName }} </td>
-      <td> {{ user.userLastName }} </td>
-      <td> {{ user.role.roleName }} </td>
+      <td class="text-center"> {{ user.userName }}</td>
+      <td class="text-center"> {{ user.userFirstName }} </td>
+      <td class="text-center"> {{ user.userLastName }} </td>
+      <td class="text-center"> {{ user.role.roleName }} </td>
       <td>
-        <button *ngIf="user.role.roleName != 'Admin'" type="button" class="btn btn-outline-danger" (click)="deleteUser(user.userName)" style="margin-left: 10px">Delete</button>
-        <br><br>
+        <button *ngIf="user.role.roleName != 'Admin'" type="button" class="btn btn-light btn-outline-dark btn-sm" (click)="deleteUser(user.userName)" style="margin-left: 10px">Törlés</button>
       </td>
     </tr>
     </tbody>

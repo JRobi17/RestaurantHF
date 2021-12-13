@@ -19,6 +19,14 @@ export class ReservationService {
     return this.httpclient.post(this.PATH_OF_API + "/reservation/makeAReservation", reservation, {responseType: 'text'})
   }
 
+  public closeReservation(reservationId: number) {
+    return this.httpclient.put(this.PATH_OF_API + '/reservation/closeReservation/' + reservationId,  {responseType: 'text'})
+  }
+
+  public theyArrived(reservationId: number) {
+    return this.httpclient.put(this.PATH_OF_API + '/reservation/theyArrived/' + reservationId,  {responseType: 'text'})
+  }
+
   public getOpenReservations() : Observable<Reservation[]> {
     return this.httpclient.get<Reservation[]>(this.PATH_OF_API + "/reservation/getOpenReservations")
   }
@@ -27,7 +35,15 @@ export class ReservationService {
     return this.httpclient.get<Reservation[]>(this.PATH_OF_API + "/reservation/getClosedReservations")
   }
 
-  public getReservationForTable(tableId: number): Observable<Reservation[]> {
+  public getReservationsForTable(tableId: string): Observable<Reservation[]> {
     return this.httpclient.get<Reservation[]>(this.PATH_OF_API + "/reservation/" + tableId)
+  }
+
+  public checkIfResIsValid(reservation: Reservation): Observable<boolean> {
+    return this.httpclient.post<boolean>(this.PATH_OF_API + "/reservation/checkIfValid", reservation)
+  }
+
+  checkIfCapacityIsRight(tableId: number, amountOfGuests: number): Observable<boolean>{
+    return this.httpclient.get<boolean>(this.PATH_OF_API + "/reservation/checkIfCapacityIsRight/" + tableId + "/" + amountOfGuests)
   }
 }

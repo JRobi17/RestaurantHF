@@ -1,9 +1,11 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {OrderEntity} from "../classes/orderentity";
 import {OrderService} from "../services/order.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {FoodType} from "../classes/foodType";
+import {OrderType} from "../classes/orderType";
 
 @Component({
   selector: 'app-order',
@@ -14,16 +16,13 @@ export class OrderComponent implements OnInit {
 
   orders!: OrderEntity[]
   closedOrders!: OrderEntity[]
-  order: OrderEntity = new OrderEntity()
   modalRef!: BsModalRef;
-  public form: FormGroup;
   rating!: number;
   orderView!: boolean;
+  allOrderTypes: typeof OrderType = OrderType
 
-  constructor(private orderService: OrderService, private router: Router, private modalService: BsModalService, private fb: FormBuilder) {
+  constructor(private orderService: OrderService, private router: Router, private modalService: BsModalService) {
     this.rating = 0;
-    this.form = this.fb.group({
-    })
   }
 
   ngOnInit(): void {
@@ -39,18 +38,17 @@ export class OrderComponent implements OnInit {
     })
   }
 
-  deleteOrder(id: number) {
-    this.orderService.deleteOrder(id).subscribe(() => {
-      this.getOrders();
-    })
-  }
-
   finishOrder(id: number, rating: number, grandTotal: number) {
     this.orderService.finishOrder(id, rating, grandTotal).subscribe( () => {
       this.modalRef.hide();
       this.getOrders();
     })
+  }
 
+  deleteOrder(id: number) {
+    this.orderService.deleteOrder(id).subscribe(() => {
+      this.getOrders();
+    })
   }
 
   openModal(template: TemplateRef<any>) {
@@ -64,5 +62,4 @@ export class OrderComponent implements OnInit {
   pageSwap() {
     this.orderView = !this.orderView
   }
-
 }

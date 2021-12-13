@@ -1,3 +1,4 @@
 export enum OrderType {
-  INPLACE, DELIVERY
+  Inplace = 'INPLACE',
+  Delivery = 'DELIVERY'
 }

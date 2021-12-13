@@ -26,11 +26,16 @@ public class ReservationService {
         newReservation.setReservationStart(reservation.getReservationStart());
         newReservation.setReservationEnd(reservation.getReservationStart().plusHours(1));
         newReservation.setAmountOfGuests(reservation.getAmountOfGuests());
+        newReservation.setIsCurrent(reservation.getIsCurrent());
 
         List<TableEntity> tables = tableDao.findAll();
         for (TableEntity t : tables) {
             if (t.getTableId() == reservation.getTableId()) {
-                t.setTaken(true);
+                if (reservation.getIsCurrent().equals("Current")) {
+                    newReservation.setReservationStart(newReservation.getReservationStart().plusHours(1));
+                    newReservation.setReservationEnd(newReservation.getReservationEnd().plusHours(1));
+                    t.setStatus("Foglalt");
+                }
                 t.getReservationList().add(reservation);
                 newReservation.setTableId(reservation.getTableId());
             }
@@ -51,19 +56,12 @@ public class ReservationService {
         return this.reservationDao.findAll();
     }
 
-    public List<Reservation> getReservationsForTable(int tableId) {
-        List<TableEntity> tableEntityList = this.tableDao.findAll();
-        TableEntity searchedTable = null;
-        for (TableEntity t : tableEntityList) {
-            if (t.getTableId() == tableId) {
-                searchedTable = t;
-            }
-        }
+    public List<Reservation> getReservationsForTable(String tableId) {
         List<Reservation> reservationList = getAllReservations();
         List<Reservation> tableReservations = new ArrayList<>();
-        if (reservationList != null && reservationList.size() != 0 && searchedTable != null) {
+        if (reservationList != null && reservationList.size() != 0) {
             for (Reservation r : reservationList) {
-                if (r.getTableId() == searchedTable.getTableId()) {
+                if (r.getTableId() == Integer.parseInt(tableId)) {
                     tableReservations.add(r);
                 }
             }
@@ -75,7 +73,7 @@ public class ReservationService {
         List<Reservation> allReservations = getAllReservations();
         List<Reservation> openReservations = new ArrayList<>();
         for (Reservation r : allReservations) {
-            if (!r.isOver()) {
+            if (r.getStatus().equals("Folyamatban")) {
                 openReservations.add(r);
             }
         }
@@ -86,10 +84,84 @@ public class ReservationService {
         List<Reservation> allReservations = getAllReservations();
         List<Reservation> closedReservations = new ArrayList<>();
         for (Reservation r : allReservations) {
-            if (r.isOver()) {
+            if (r.getStatus().equals("Lezárt")) {
                 closedReservations.add(r);
             }
         }
         return closedReservations;
+    }
+
+    public void closeReservation(int id) {
+        List<Reservation> allReservations = getAllReservations();
+        for (Reservation r : allReservations) {
+            if (r.getReservationId() == id) {
+                List<TableEntity> tables = tableDao.findAll();
+                for (TableEntity t : tables) {
+                    if (t.getTableId() == r.getTableId()) {
+                        if (r.getIsCurrent().equals("Current")) {
+                            t.setStatus("Szabad");
+                        }
+                        t.getReservationList().remove(r);
+
+                    }
+                }
+                r.setIsCurrent(r.getStatus());
+                r.setStatus("Lezárt");
+                reservationDao.save(r);
+            }
+        }
+    }
+
+    public void theyArrived(int id) {
+        List<Reservation> allReservations = getAllReservations();
+        for (Reservation r : allReservations) {
+            if (r.getReservationId() == id) {
+                List<TableEntity> tables = tableDao.findAll();
+                for (TableEntity t : tables) {
+                    if (t.getTableId() == r.getTableId()) {
+                        t.setStatus("Foglalt");
+                        r.setIsCurrent("Current");
+                        reservationDao.save(r);
+                    }
+                }
+            }
+        }
+
+    }
+
+    public boolean checkIfResIsValid(Reservation reservation) {
+        List<Reservation> reservationListForTable = getReservationsForTable(String.valueOf(reservation.getTableId()));
+        if (reservationListForTable.isEmpty()) {
+            return true;
+        }
+        List<Reservation> openReservationListForTable = new ArrayList<>();
+        for (Reservation r : reservationListForTable) {
+            if (r.getIsCurrent().equals("Current")) {
+                openReservationListForTable.add(r);
+            }
+        }
+        for (Reservation r : openReservationListForTable) {
+            if (r.getTableId() == reservation.getTableId()) {
+                if (reservation.getReservationStart().isAfter(r.getReservationStart()) && reservation.getReservationStart().isBefore(r.getReservationEnd())) {
+                    return false;
+                }
+                if (reservation.getReservationStart().plusHours(1).isAfter(r.getReservationStart()) && reservation.getReservationStart().plusHours(1).isBefore(r.getReservationEnd())) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean checkIfCapacityIsRight(String tableId, String amountOfGuests) {
+        List<TableEntity> tableEntityList = tableDao.findAll();
+        for (TableEntity t : tableEntityList) {
+            if (t.getTableId() == Integer.parseInt(tableId)) {
+                if (t.getCapacity() < Integer.parseInt(amountOfGuests)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

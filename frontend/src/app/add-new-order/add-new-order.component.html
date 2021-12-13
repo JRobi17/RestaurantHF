@@ -1,0 +1,103 @@
+<div class="col-md-4 offset-md-1" style="height: 30px;">
+  <table class="table">
+    <thead>
+    <tr>
+      <th> Étel neve</th>
+      <th> Ár</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let food of selectedFoods">
+      <td> {{ food.name }}</td>
+      <td> {{ food.price }} </td>
+      <td>
+        <button type="button" class="btn btn-light btn-outline-dark" (click)="deleteFromMenu(food)"
+                style="margin-left: 10px">Törlés
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container mt-2 center4">
+  <div class="card border-0" style="padding: 20px;">
+    <form>
+      <label>
+        Előétel
+      </label>
+      <mat-form-field appearance="fill">
+        <mat-select [(ngModel)]="selectedAppetizer" name="appetizer">
+          <mat-option></mat-option>
+          <ng-container *ngFor="let food of foods">
+            <mat-option *ngIf="food.foodType === allFoodTypes.Appetizer" [value]="food">
+              {{ food.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <br><br>
+      <label>
+        Főétel
+      </label>
+      <mat-form-field appearance="fill">
+        <mat-select [(ngModel)]="selectedMainCourse" name="maincourse">
+          <mat-option></mat-option>
+          <ng-container *ngFor="let food of foods">
+            <mat-option *ngIf="food.foodType === allFoodTypes.MainCourse" [value]="food">
+              {{ food.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <br><br>
+      <label>
+        Desszert
+      </label>
+      <mat-form-field appearance="fill">
+        <mat-select [(ngModel)]="selectedDessert" name="dessert">
+          <mat-option></mat-option>
+          <ng-container *ngFor="let food of foods">
+            <mat-option *ngIf="food.foodType === allFoodTypes.Dessert" [value]="food">
+              {{ food.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <br><br>
+      <label>
+        Ital
+      </label>
+      <mat-form-field appearance="fill">
+        <mat-select [(ngModel)]="selectedDrink" name="drink">
+          <mat-option></mat-option>
+          <ng-container *ngFor="let food of foods">
+            <mat-option *ngIf="food.foodType === allFoodTypes.Drink" [value]="food">
+              {{ food.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <br><br>
+      <label>
+        Fizetési mód
+      </label>
+      <mat-form-field appearance="fill">
+        <mat-select [(ngModel)]="selectedPaymentMethod" name="paymentMethod">
+          <mat-option [value]="allPaymentMethod.Card"> {{ allPaymentMethod.Card }} </mat-option>
+          <mat-option [value]="allPaymentMethod.Cash"> {{ allPaymentMethod.Cash }} </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <button class="btn btn-light btn-outline-dark center5"
+              (click)="addToMenu(selectedAppetizer, selectedMainCourse, selectedDessert, selectedDrink)"> Hozzáadás
+      </button>
+      <p class="center6">Végösszeg: {{ price }} Forint</p>
+      <div class="alert-danger center8" style="" *ngIf="error != ''"> {{error}}</div>
+      <button class="btn btn-light btn-outline-dark center7" (click)="onSubmit()" type="submit">
+        Rendelés leadása
+      </button>
+    </form>
+  </div>
+</div>
+

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -16,19 +16,21 @@ import {EmployeeComponent} from './employee/employee.component';
 import {ReservationComponent} from './reservation/reservation.component';
 import {TableComponent} from './table/table.component';
 import {DeliveryComponent} from './delivery/delivery.component';
-import {InplaceComponent} from './inplace/inplace.component';
 import {CreateNewEmployeeComponent} from './create-new-employee/create-new-employee.component';
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSelectModule} from "@angular/material/select";
 import {HomeComponent} from './home/home.component';
-import {OrderTypeComponent} from './order-type/order-type.component';
 import {BsModalService} from "ngx-bootstrap/modal";
 import {PositioningService} from "ngx-bootstrap/positioning";
 import {ComponentLoaderFactory} from "ngx-bootstrap/component-loader";
 import {NgxStarRatingModule} from 'ngx-star-rating';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateNewReservationComponent } from './create-new-reservation/create-new-reservation.component';
+import { AddNewOrderComponent } from './add-new-order/add-new-order.component';
+import { registerLocaleData } from '@angular/common';
+import localeHu from '@angular/common/locales/hu';
+registerLocaleData(localeHu);
 
 @NgModule({
   declarations: [
@@ -41,11 +43,10 @@ import { CreateNewReservationComponent } from './create-new-reservation/create-n
     ReservationComponent,
     TableComponent,
     DeliveryComponent,
-    InplaceComponent,
     CreateNewEmployeeComponent,
     HomeComponent,
-    OrderTypeComponent,
-    CreateNewReservationComponent
+    CreateNewReservationComponent,
+    AddNewOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +72,10 @@ import { CreateNewReservationComponent } from './create-new-reservation/create-n
     UserService,
     BsModalService,
     ComponentLoaderFactory,
-    PositioningService
+    PositioningService,
+    {
+      provide: LOCALE_ID, useValue: 'hu:HUN'
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -2,31 +2,29 @@
 
 <div *ngIf="!orderView">
   <br><br>
-  <button id="button1" type="button" class="btn btn-outline-primary" routerLink="/ordertype"> Új rendelés hozzáadása</button>
-  <button id="button2" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Lezárt rendelések megtekintése</button>
+  <button id="button1" type="button" class="btn btn-light btn-outline-dark button1" routerLink="/delivery"> Házhozszállítás </button>
+  <button id="button2" type="button" class="btn btn-light btn-outline-dark button2" (click)="pageSwap()"> Lezárt rendelések megtekintése</button>
   <br><br>
   <br><br>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th> Azonosító </th>
-      <th> Fizetés módja </th>
-      <th> Végösszeg </th>
-      <th> Rendelés módja </th>
+      <th class="text-center"> Azonosító </th>
+      <th class="text-center"> Fizetés módja </th>
+      <th class="text-center"> Végösszeg </th>
+      <th class="text-center"> Rendelés módja </th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let order of orders" >
-      <td> {{ order.orderId }}</td>
-      <td> {{ order.paymentMethod }} </td>
-      <td> {{ order.grandTotal }} </td>
-      <td> {{ order.orderType }}</td>
+      <td class="text-center"> {{ order.orderId }}</td>
+      <td class="text-center"> {{ order.paymentMethod }} </td>
+      <td class="text-center"> {{ order.grandTotal }} </td>
+      <td class="text-center" *ngIf="order.orderType === allOrderTypes.Inplace"> {{order.orderType}} ({{ order.tableId }}. asztal) </td>
+      <td class="text-center" *ngIf="order.orderType === allOrderTypes.Delivery"> {{ order.orderType }} </td>
       <td>
-        <button type="button" class="btn btn-outline-danger" (click)="deleteOrder(order.orderId)" style="margin-left: 10px">Delete</button>
-        <button type="button" class="btn btn-outline-success" (click)="openModal(template)" style="margin-left: 10px">Close</button>
-        <button type="button" class="btn btn-outline-info" [disabled]="order.grandTotal == 1590" (click)="openModal(address)" style="margin-left: 10px">Info</button>
-
-        <br><br>
+        <button type="button" class="btn btn-light btn-outline-dark btn-sm" (click)="openModal(template)" style="margin-left: 10px">Lezárás</button>
+        <button type="button" class="btn btn-light btn-outline-dark btn-sm" [disabled]="order.grandTotal == 1590" (click)="openModal(address)" style="margin-left: 10px">Info</button>
         <ng-template #template>
           <div class="modal-body text-center">
             <p>Kérjük a lezárás előtt értékelje a rendelést!</p>
@@ -35,8 +33,8 @@
                 <ngx-star-rating [(ngModel)]="rating" [id]="'rating'" ></ngx-star-rating >
               </div>
             </div>
-            <button type="button" class="btn btn-default" (click)="finishOrder(order.orderId, rating, order.grandTotal)" >Lezárás</button>
-            <button type="button" class="btn btn-primary" (click)="decline()" >Mégsem</button>
+            <button type="button" class="btn btn-light btn-outline-dark btn-sm btn-space" (click)="finishOrder(order.orderId, rating, order.grandTotal)" >Lezárás</button>
+            <button type="button" class="btn btn-light btn-outline-dark btn-sm btn-space" (click)="decline()" >Mégsem</button>
           </div>
         </ng-template>
         <ng-template #address>
@@ -55,24 +53,27 @@
 
 <div *ngIf="orderView">
   <br><br>
-  <button id="button3" type="button" class="btn btn-outline-primary" (click)="pageSwap()"> Folyamatban lévő rendelések megtekintése</button>
+  <button id="button3" type="button" class="btn btn-light btn-outline-dark button1" routerLink="/delivery"> Házhozszállítás </button>
+  <button id="button4" type="button" class="btn btn-light btn-outline-dark button2" (click)="pageSwap()"> Futó rendelések megtekintése</button>
+  <br><br>
+  <br><br>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th> Azonosító </th>
-      <th> Fizetés módja </th>
-      <th> Végösszeg </th>
-      <th> Rendelés módja </th>
-      <th> Értékelés </th>
+      <th class="text-center"> Azonosító </th>
+      <th class="text-center"> Fizetés módja </th>
+      <th class="text-center"> Végösszeg </th>
+      <th class="text-center"> Rendelés módja </th>
+      <th class="text-center"> Értékelés </th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let order of closedOrders" >
-      <td> {{ order.orderId }}</td>
-      <td> {{ order.paymentMethod }} </td>
-      <td> {{ order.grandTotal }} </td>
-      <td> {{ order.orderType }}</td>
-      <td> {{ order.rating }}/5</td>
+      <td class="text-center"> {{ order.orderId }}</td>
+      <td class="text-center"> {{ order.paymentMethod }} </td>
+      <td class="text-center"> {{ order.grandTotal }} </td>
+      <td class="text-center"> {{ order.orderType }}</td>
+      <td class="text-center"> {{ order.rating }}/5</td>
     </tr>
     </tbody>
   </table>

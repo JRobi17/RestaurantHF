@@ -5,8 +5,6 @@ import com.example.backend.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,6 +18,12 @@ public class ReservationController {
         this.reservationService.makeAReservation(reservation);
     }
 
+    @PutMapping("/reservation/closeReservation/{id}")
+    public void closeReservation(@PathVariable int id) { this.reservationService.closeReservation(id); }
+
+    @PutMapping("/reservation/theyArrived/{id}")
+    public void theyArrived(@PathVariable int id) { this.reservationService.theyArrived(id); }
+
     @GetMapping("/reservation/getOpenReservations")
     public List<Reservation> getOpenReservations() { return this.reservationService.getOpenReservations(); }
 
@@ -27,5 +31,13 @@ public class ReservationController {
     public List<Reservation> getClosedReservations() { return this.reservationService.getClosedReservations(); }
 
     @GetMapping("/reservation/{tableId}")
-    public List<Reservation> getReservationForTable(@PathVariable int tableId) { return this.reservationService.getReservationsForTable(tableId); }
+    public List<Reservation> getReservationForTable(@PathVariable String tableId) { return this.reservationService.getReservationsForTable(tableId); }
+
+    @PostMapping("/reservation/checkIfValid")
+    public boolean checkIfResIsValid(@RequestBody Reservation reservation) { return this.reservationService.checkIfResIsValid(reservation); }
+
+    @GetMapping("/reservation/checkIfCapacityIsRight/{tableId}/{amountOfGuests}")
+    public boolean checkIfCapacityIsRight(@PathVariable String tableId, @PathVariable String amountOfGuests) {
+        return this.reservationService.checkIfCapacityIsRight(tableId, amountOfGuests);
+    }
 }

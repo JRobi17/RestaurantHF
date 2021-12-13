@@ -1,15 +1,13 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-<h2> Elérhető asztalok száma: {{numberOfFreeTables}}</h2>
-<div class="card-group  offset-md-1 col-md-10">
-  <div class="card" *ngFor="let table of tables; let i = index">
-    <div class="card-body" [ngStyle]="{'background-color': table.isTaken? 'red' : '#00ff00'}">
-      <h5 class="card-title">{{i + 1}}. asztal</h5>
-      <p> Kapacitás: {{ table.capacity }}</p>
-      <p *ngIf="!table.isTaken"> Státusz: szabad</p>
-      <p *ngIf="table.isTaken"> Státusz: foglalt</p>
-      <button (click)="routeToTableReservations(table.tableId)">Foglalás</button>
+<br><br>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="card text-dark bg-light mb-3 " *ngFor="let table of tables">
+    <div class="card-body mx-auto">
+      <h5 class="card-title text-center">{{table.tableId}}. asztal</h5>
+      <p [ngClass]="{'circle2': table.status==='Szabad', 'circle' : table.status=='Foglalt' }"></p>
+      <p class="text-center"> Kapacitás: {{ table.capacity }}</p>
+      <button type="button" class="btn btn-light btn-outline-dark btn-space" *ngIf="table.status == 'Szabad'" (click)="routeToTableReservations(table.tableId)">Foglalás</button>
+      <button type="button" class="btn btn-light btn-outline-dark btn-space" *ngIf="table.status == 'Foglalt'" (click)="routeToAddNewOrder(table.tableId)">Új rendelés</button>
+      <button type="button" class="btn btn-light btn-outline-dark btn-space" (click)="routeToReservationHistory(table.tableId)"> Előzmények </button>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-#button1{
+.button1{
   width: 300px;
   height: 40px;
   margin: 0;
@@ -7,12 +7,10 @@
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background-color: #4CAF50;
-  color: white;
   border-radius: 8px;
 }
 
-#button2{
+.button2{
   width: 300px;
   height: 40px;
   margin: 0;
@@ -21,8 +19,6 @@
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background-color: #4CAF50;
-  color: white;
   border-radius: 8px;
 }
 
@@ -43,4 +39,13 @@ div.stars {
   width: 270px;
   display: inline-block;
 }
+
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+.btn-space {
+  margin-right: 10px;
+}
+
 
